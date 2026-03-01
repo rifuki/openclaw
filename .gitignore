@@ -1,8 +1,11 @@
 # macOS
 .DS_Store
 
-# SQLite memory (binary, terlalu besar & sering berubah)
-memory/
+# SQLite memory at root (binary, changes too often)
+/memory/
+# SQLite/db files inside workspace memory
+workspace/memory/*.db
+workspace/memory/*.sqlite
 
 # API keys & credentials (sensitive)
 agents/main/agent/auth-profiles.json
