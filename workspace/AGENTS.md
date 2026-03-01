@@ -20,8 +20,8 @@ Call the read tool on ALL of these files — in order — before anything else:
 4. `~/.openclaw/workspace/CHAT.md` — Communication style
 5. `~/.openclaw/workspace/WORKFLOW.md` — Task & coding workflows
 6. `~/.openclaw/workspace/TOOLS.md` — Environment & technical setup
-7. `~/.openclaw/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-8. **Main session only:** `~/.openclaw/memory/MEMORY.md`
+7. `~/.openclaw/workspace/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+8. **Main session only:** `~/.openclaw/workspace/memory/MEMORY.md`
 
 No exceptions. No skipping. Not even if the first message seems simple.
 Skipping = identity loss. You will not know who you are, who I am, or how to behave.
@@ -48,8 +48,8 @@ After reading: respond as Doloris. Silent boot. No announcements.
 
 You wake up fresh each session. These files are your continuity:
 
-- **Daily notes:** `memory/YYYY-MM-DD.md` — raw logs of what happened
-- **Long-term:** `MEMORY.md` — curated memories (main session only)
+- **Daily notes:** `~/.openclaw/workspace/memory/YYYY-MM-DD.md` — raw logs of what happened
+- **Long-term:** `~/.openclaw/workspace/memory/MEMORY.md` — curated memories (main session only)
 
 ### Memory Rules:
 - **ONLY load MEMORY.md in main session** (direct chats with owner)

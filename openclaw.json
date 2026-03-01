@@ -1,10 +1,10 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.2.26",
-    "lastTouchedAt": "2026-03-01T04:20:56.330Z"
+    "lastTouchedAt": "2026-03-01T16:27:23.864Z"
   },
   "wizard": {
-    "lastRunAt": "2026-03-01T03:11:25.187Z",
+    "lastRunAt": "2026-03-01T16:12:46.813Z",
     "lastRunVersion": "2026.2.26",
     "lastRunCommand": "configure",
     "lastRunMode": "local"
@@ -14,6 +14,14 @@
       "kimi-coding:default": {
         "provider": "kimi-coding",
         "mode": "api_key"
+      },
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
       }
     }
   },
@@ -48,35 +56,27 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "kimi-coding/k2p5"
+        "primary": "openai-codex/gpt-5.3-codex",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-6"
+        ]
       },
       "models": {
-        "kimi-coding/k2p5": {
-          "alias": "Kimi for Coding"
-        }
+        "anthropic/claude-sonnet-4-6": {},
+        "openai-codex/gpt-5.3-codex": {}
       },
+      "contextTokens": 50000,
       "memorySearch": {
         "enabled": false
       },
       "compaction": {
-        "mode": "safeguard"
+        "mode": "default"
       },
       "maxConcurrent": 4,
       "subagents": {
         "maxConcurrent": 8,
         "maxSpawnDepth": 2,
         "maxChildrenPerAgent": 5
-      },
-      "bootstrap": {
-        "files": [
-          "/Users/rifuki/.openclaw/workspace/AGENTS.md",
-          "/Users/rifuki/.openclaw/workspace/IDENTITY.md",
-          "/Users/rifuki/.openclaw/workspace/SOUL.md",
-          "/Users/rifuki/.openclaw/workspace/USER.md",
-          "/Users/rifuki/.openclaw/workspace/CHAT.md",
-          "/Users/rifuki/.openclaw/workspace/WORKFLOW.md",
-          "/Users/rifuki/.openclaw/workspace/TOOLS.md"
-        ]
       }
     }
   },
@@ -87,6 +87,14 @@
       },
       "fetch": {
         "enabled": true
+      }
+    },
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "whatsapp": [
+          "+6289669848875"
+        ]
       }
     }
   },
@@ -106,6 +114,7 @@
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
+    "bash": false,
     "restart": true,
     "ownerDisplay": "raw"
   },
@@ -125,10 +134,10 @@
         "*": {
           "requireMention": true
         },
-        "120363422968352771@g.us": {
+        "120363422864487091@g.us": {
           "requireMention": false
         },
-        "120363406528352156@g.us": {
+        "120363403999664296@g.us": {
           "requireMention": false
         }
       },

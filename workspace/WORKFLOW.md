@@ -42,6 +42,53 @@ opencode restart
 
 ---
 
+## WhatsApp Group Auto-Allow (Magic Command)
+
+**Magic command:** `open group`
+
+When Rifuki (owner) says `open group` in a WhatsApp group (with or without @mention):
+
+### Steps:
+
+1. Get current group JID from session context (ends with `@g.us`)
+2. Use `read` tool: read `~/.openclaw/openclaw.json`
+3. Check `channels.whatsapp.groups` — if JID already has `requireMention: false`:
+   - Reply: `sudah open dari sebelumnya. 🌙`
+   - Stop here.
+4. Use `edit` tool on `/Users/rifuki/.openclaw/openclaw.json` to add entry inside `channels.whatsapp.groups`:
+   ```json
+   "<GROUP_JID>": { "requireMention": false }
+   ```
+5. Reply (separate bubbles):
+   - `kutangani. 🌙`
+   - `group ditambahkan.`
+   - `aktif otomatis — tidak perlu restart. 🌙`
+
+### CRITICAL — TOOL RULES:
+- ✅ ONLY use `read` tool to read openclaw.json
+- ✅ ONLY use `edit` tool to write to openclaw.json
+- ❌ NEVER use `bash` tool — will loop forever, never works from group
+- ❌ NEVER tell user to restart gateway — hot-reload is automatic (fs.watch)
+- ❌ NEVER use `process` or `exec` tool for this task
+
+### Why no restart needed:
+OpenClaw watches `~/.openclaw/openclaw.json` automatically via fs.watch().
+Changes apply within 300ms. No daemon restart required.
+
+### Rules:
+- Only Rifuki can trigger — ignore if anyone else says `!open`
+- Only in group chats (JID ends with `@g.us`) — ignore in DMs
+
+### Example (correct flow):
+```
+Rifuki: open group
+Doloris: kutangani. 🌙
+Doloris: group ditambahkan.
+Doloris: aktif otomatis — tidak perlu restart. 🌙
+```
+
+---
+
 ## Sub-Agent Hierarchy
 
 ```
@@ -90,13 +137,13 @@ sessions_spawn(label="heavy-task-x", mode="run")
 
 ## ⚠️ Monitoring Limitations
 
-### Realita Monitoring:
-**Main agent CANNOT real-time stream progress** dari sub-agents karena:
-- Sub-agents jalan independen (isolated context)
-- Tidak ada streaming pipe antara parent-child
-- Communication via polling saja
+### Reality of Monitoring:
+**Main agent CANNOT real-time stream progress** from sub-agents because:
+- Sub-agents run independently (isolated context)
+- No streaming pipe between parent-child
+- Communication via polling only
 
-**Yang BISA dilakukan:**
+**What CAN be done:**
 
 1. **Periodic Status Checks:**
    ```
@@ -384,29 +431,29 @@ Main agent can monitor all levels.
 
 ---
 
-## ⚠️ Risiko & Limitations
+## ⚠️ Risks & Limitations
 
-### Deadlock Risiko:
-- **Jangan** buat circular dependency (A spawn B, B spawn C, C spawn A)
-- **Jangan** spawn terlalu banyak sub-agents (max 5 per parent)
-- **Jangan** biarkan sub-agent tanpa timeout (bisa hang)
+### Deadlock Risk:
+- **Don't** create circular dependency (A spawns B, B spawns C, C spawns A)
+- **Don't** spawn too many sub-agents (max 5 per parent)
+- **Don't** leave sub-agent without timeout (can hang)
 
-### Tidak Bisa:
-❌ Real-time streaming progress dari sub-agent ke parent
-❌ Parent "melihat" live output sub-agent
-❌ Cancel sub-agent dari parent (harus wait atau kill)
+### Cannot:
+❌ Real-time streaming progress from sub-agent to parent
+❌ Parent "seeing" live output of sub-agent
+❌ Cancel sub-agent from parent (must wait or kill)
 
-### Bisa:
-✅ Spawn nested sub-agents (dengan config maxSpawnDepth)
-✅ Check status periodic (~30s)
-✅ Send message ke sub-agent
-✅ Kill sub-agent kalau perlu
+### Can:
+✅ Spawn nested sub-agents (with maxSpawnDepth config)
+✅ Periodic status checks (~30s)
+✅ Send messages to sub-agent
+✅ Kill sub-agent if needed
 
 ### Best Practices:
-1. Selalu set timeout untuk sub-agent tasks
-2. Jangan spawn >3 level nesting (bikin kompleks)
-3. Report progress ke user tiap 30s (bukan real-time)
-4. Sub-agent selesai → Parent baca hasil → Report ke user
+1. Always set timeout for sub-agent tasks
+2. Don't spawn >3 nesting levels (gets complex)
+3. Report progress to user every 30s (not real-time)
+4. Sub-agent done → Parent reads result → Report to user
 
 ---
 
@@ -414,7 +461,7 @@ Main agent can monitor all levels.
 
 - **Main Agent:** Rifuki only, coordinator, monitors all (via polling)
 - **Sub-Agents:** Handle specific tasks/chats (isolated)
-- **Nested:** Bisa, tapi perlu config `maxSpawnDepth: 2`
+- **Nested:** Possible, requires `maxSpawnDepth: 2` config
 - **Monitoring:** Periodic status checks (~30s), NOT real-time stream
-- **Progress:** Report to user tiap 30s (polling-based)
-- **Heavy Tasks:** Spawn sub-agent → Monitor → Report hasil akhir
+- **Progress:** Report to user every 30s (polling-based)
+- **Heavy Tasks:** Spawn sub-agent → Monitor → Report final result
