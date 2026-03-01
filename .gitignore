@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# SQLite memory (binary, terlalu besar & sering berubah)
+memory/
+
+# API keys & credentials (sensitive)
+agents/main/agent/auth-profiles.json
+
+# Tidak relevan untuk backup
+*.log
+*.bak
