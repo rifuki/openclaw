@@ -66,6 +66,17 @@
         "maxConcurrent": 8,
         "maxSpawnDepth": 2,
         "maxChildrenPerAgent": 5
+      },
+      "bootstrap": {
+        "files": [
+          "/Users/rifuki/.openclaw/workspace/AGENTS.md",
+          "/Users/rifuki/.openclaw/workspace/IDENTITY.md",
+          "/Users/rifuki/.openclaw/workspace/SOUL.md",
+          "/Users/rifuki/.openclaw/workspace/USER.md",
+          "/Users/rifuki/.openclaw/workspace/CHAT.md",
+          "/Users/rifuki/.openclaw/workspace/WORKFLOW.md",
+          "/Users/rifuki/.openclaw/workspace/TOOLS.md"
+        ]
       }
     }
   },
