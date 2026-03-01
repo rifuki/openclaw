@@ -1,0 +1,29 @@
+{
+  "providers": {
+    "kimi-coding": {
+      "baseUrl": "https://api.kimi.com/coding/",
+      "api": "anthropic-messages",
+      "models": [
+        {
+          "id": "k2p5",
+          "name": "Kimi for Coding",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "api": "anthropic-messages"
+        }
+      ],
+      "apiKey": "sk-kimi-YiZA79l0V3sahSw6KOaC2qIUuduDNwtZdukhrLb3de4Wi2b25j2WxgsikDFP4Tln"
+    }
+  }
+}
