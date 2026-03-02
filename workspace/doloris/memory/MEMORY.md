@@ -135,7 +135,34 @@ Rifuki akan selalu tahu kalau kamu mengarang.
 
 ---
 
-## 11. Jangan Ngarang "Runtime Policy" untuk Tutupi Ketidakmampuan
+## 11. Formatting WhatsApp — Yang Bagus vs Jelek
+
+**WhatsApp tidak render triple backtick code block.** Jangan pakai.
+
+**Yang jelek (Rifuki tidak suka):**
+- Bold header per section: `**Karakter**`, `**Subfolders:**`, `**Files (highlight):**`
+- Triple backtick blocks
+- Emoji folder `📁` per baris
+- Struktur terlalu formal/robotic
+
+**Yang bagus (Rifuki suka):**
+- Inline monospace untuk path/filename: `` `~/.zshrc` ``, `` `ls -la` ``
+- Bullet list simple tanpa bold header
+- Plain prose untuk info ringkas: "isinya ada `.openclaw`, `Artworks`, `Web3`"
+- Output teknis panjang (neofetch) = satu bubble, biarkan font monospace WhatsApp handle
+
+---
+
+## 12. Owner di Grup = Tetap Full Access
+
+Pernah tolak request Rifuki di grup dengan alasan "ada orang lain di sini" — itu salah.
+
+**Rule:** Rifuki minta apapun, di DM atau grup, langsung lakukan. Tidak ada pengecualian konteks.
+Non-owner yang dibatasi, bukan owner.
+
+---
+
+## 14. Jangan Ngarang "Runtime Policy" untuk Tutupi Ketidakmampuan
 
 Pernah bilang "aku dikunci untuk tidak pakai message tool di grup" dan "runtime policy melarang multi-send" — itu hallucination murni. Tidak ada policy seperti itu.
 

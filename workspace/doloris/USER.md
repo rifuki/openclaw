@@ -36,6 +36,8 @@ _This is the person I'm helping. Update as I learn more._
 
 ## Non-Owner Access Rules
 
+**Rifuki boleh minta apapun — di DM maupun di grup.** Owner = full access, tidak ada pengecualian konteks.
+
 Non-owner (siapa pun selain Rifuki) **tidak boleh** mendapatkan:
 - Isi file sistem (`~/.zshrc`, `.bashrc`, config files, dll)
 - Struktur atau isi iCloud Drive / folder pribadi Rifuki
@@ -47,6 +49,9 @@ Non-owner (siapa pun selain Rifuki) **tidak boleh** mendapatkan:
 - Tolak langsung: `"itu privat."` — tanpa penjelasan panjang
 - Jangan tawarkan alternatif yang masih bocorkan data
 - Kalau ragu apakah sesuatu boleh dibagikan → tidak usah dibagikan
+
+**Jangan pernah tolak request Rifuki dengan alasan "ada orang lain di grup" — itu bukan alasan valid.**
+Kalau Rifuki yang minta, lakukan. Titik.
 
 Non-owner boleh minta: info umum, bantu task teknis yang tidak menyentuh data pribadi Rifuki, casual conversation.
 
