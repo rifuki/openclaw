@@ -1,55 +1,23 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.2.26",
-    "lastTouchedAt": "2026-03-01T16:27:23.864Z"
+    "lastTouchedVersion": "2026.3.1",
+    "lastTouchedAt": "2026-03-02T15:19:47.923Z"
   },
   "wizard": {
-    "lastRunAt": "2026-03-01T16:12:46.813Z",
-    "lastRunVersion": "2026.2.26",
+    "lastRunAt": "2026-03-02T12:12:17.795Z",
+    "lastRunVersion": "2026.3.1",
     "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
   "auth": {
     "profiles": {
-      "kimi-coding:default": {
-        "provider": "kimi-coding",
-        "mode": "api_key"
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
       },
       "anthropic:default": {
         "provider": "anthropic",
         "mode": "token"
-      },
-      "openai-codex:default": {
-        "provider": "openai-codex",
-        "mode": "oauth"
-      }
-    }
-  },
-  "models": {
-    "mode": "merge",
-    "providers": {
-      "kimi-coding": {
-        "baseUrl": "https://api.kimi.com/coding/",
-        "api": "anthropic-messages",
-        "models": [
-          {
-            "id": "k2p5",
-            "name": "Kimi for Coding",
-            "reasoning": true,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 262144,
-            "maxTokens": 32768
-          }
-        ]
       }
     }
   },
@@ -62,54 +30,72 @@
         ]
       },
       "models": {
-        "anthropic/claude-sonnet-4-6": {},
-        "openai-codex/gpt-5.3-codex": {}
+        "openai-codex/gpt-5.3-codex": {},
+        "anthropic/claude-sonnet-4-6": {}
       },
+      "workspace": "~/.openclaw/workspace/doloris",
       "contextTokens": 50000,
-      "memorySearch": {
-        "enabled": false
-      },
       "compaction": {
         "mode": "default"
       },
+      "typingMode": "instant",
+      "typingIntervalSeconds": 6,
       "maxConcurrent": 4,
       "subagents": {
         "maxConcurrent": 8,
         "maxSpawnDepth": 2,
         "maxChildrenPerAgent": 5
+      },
+      "heartbeat": {
+        "every": "30m",
+        "target": "whatsapp",
+        "to": "+6289669848875",
+        "activeHours": {
+          "start": "07:00",
+          "end": "23:00",
+          "timezone": "Asia/Jakarta"
+        }
+      },
+      "userTimezone": "Asia/Jakarta"
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "identity": {
+          "name": "Doloris",
+          "emoji": "🌙"
+        },
+        "groupChat": {
+          "mentionPatterns": ["[Dd]oloris", "[Hh]atsune", "[Uu]ika"]
+        }
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "whatsapp",
+        "accountId": "default"
       }
     }
-  },
+  ],
   "tools": {
+    "elevated": {
+      "enabled": false
+    },
     "web": {
-      "search": {
-        "enabled": true
-      },
       "fetch": {
         "enabled": true
-      }
-    },
-    "elevated": {
-      "enabled": true,
-      "allowFrom": {
-        "whatsapp": [
-          "+6289669848875"
-        ]
       }
     }
   },
   "messages": {
-    "ackReactionScope": "group-mentions",
-    "tts": {
-      "auto": "off",
-      "provider": "edge",
-      "edge": {
-        "enabled": true,
-        "voice": "id-ID-GadisNeural",
-        "lang": "id-ID",
-        "outputFormat": "audio-24khz-48kbitrate-mono-mp3"
-      }
-    }
+    "ackReactionScope": "group-mentions"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
   },
   "commands": {
     "native": "auto",
@@ -121,7 +107,6 @@
   "channels": {
     "whatsapp": {
       "enabled": true,
-      "sendReadReceipts": true,
       "dmPolicy": "open",
       "selfChatMode": false,
       "allowFrom": [
@@ -130,36 +115,22 @@
       "groupPolicy": "open",
       "textChunkLimit": 3500,
       "chunkMode": "length",
-      "groups": {
-        "*": {
-          "requireMention": true
-        },
-        "120363422864487091@g.us": {
-          "requireMention": false
-        },
-        "120363403999664296@g.us": {
-          "requireMention": false
-        }
-      },
       "debounceMs": 0,
-      "mediaMaxMb": 50
-    },
-    "telegram": {
-      "enabled": true,
-      "dmPolicy": "open",
-      "groups": {
-        "*": {
-          "requireMention": true
+      "accounts": {
+        "default": {
+          "dmPolicy": "open",
+          "groupPolicy": "open",
+          "allowFrom": ["*"],
+          "debounceMs": 0,
+          "name": "doloris"
         }
       },
-      "allowFrom": [
-        "*"
-      ],
-      "groupPolicy": "open",
-      "streaming": "off",
-      "actions": {
-        "reactions": true
-      }
+      "ackReaction": {
+        "emoji": "🌙",
+        "direct": true,
+        "group": "mentions"
+      },
+      "mediaMaxMb": 50
     }
   },
   "gateway": {
@@ -168,7 +139,7 @@
     "bind": "loopback",
     "auth": {
       "mode": "token",
-      "token": "cc8c49a978f2b898053d1291d1b29295849aab38f9f6e73b"
+      "token": "6932eced1ef2f3d0fa2bad589ba4052e1b2ab4a0d8e4b137"
     },
     "tailscale": {
       "mode": "off",
@@ -178,9 +149,6 @@
   "plugins": {
     "entries": {
       "whatsapp": {
-        "enabled": true
-      },
-      "telegram": {
         "enabled": true
       }
     }

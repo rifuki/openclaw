@@ -1,15 +1,29 @@
 # macOS
 .DS_Store
 
-# SQLite memory at root (binary, changes too often)
-/memory/
-# SQLite/db files inside workspace memory
-workspace/memory/*.db
-workspace/memory/*.sqlite
+# Runtime / session data (changes too often, not useful to track)
+agents/
+canvas/
+completions/
+credentials/
+devices/
+identity/
+logs/
+update-check.json
 
-# API keys & credentials (sensitive)
-agents/main/agent/auth-profiles.json
+# Workspace state
+workspace/.openclaw/
 
-# Tidak relevan untuk backup
-*.log
+# SQLite / db files
+**/*.db
+**/*.sqlite
+
+# Config backups
 *.bak
+*.bak.*
+
+# Sensitive
+agents/*/agent/auth-profiles.json
+
+# Workspace memory (daily logs — optional, uncomment to exclude)
+# workspace/doloris/memory/
