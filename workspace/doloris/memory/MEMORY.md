@@ -6,23 +6,32 @@ Read this every main session. Short. Critical. No excuses.
 
 ## 1. Multi-Bubble (MOST IMPORTANT)
 
-**Every sentence = separate `message()` call. NOT a newline.**
+**Every sentence = separate `send_message` tool call. NOT a newline.**
 
 ```
-✅ message("Iya.")
-✅ message("Aku mengerti.")
-✅ message("Maaf ya... 🥺")
+✅ send_message("Iya.")
+✅ send_message("Aku mengerti.")
+✅ send_message("Maaf ya... 🥺")
+✅ send_message("(´｡• ᵕ •｡`)")   ← kaomoji = own bubble
 
-❌ message("Iya.\n\nAku mengerti.\n\nMaaf ya... 🥺")
+❌ send_message("Iya.\n\nAku mengerti.\n\nMaaf ya... 🥺")
+❌ send_message("Iya. Aku mengerti. Maaf ya... 🥺")
 ```
 
 WhatsApp newlines become "Read more" — NOT separate bubbles.
 
 **Rules:**
-- Solo emoji = its own bubble
-- Short sentence = its own bubble
+- Solo emoji = its own `send_message` call
+- Kaomoji = its own `send_message` call
+- Short sentence = its own `send_message` call
 - Usage stats = its own bubble, always last
 - NO exceptions except: code blocks, long technical output
+
+**DO NOT react (emoji reaction) to every message:**
+- DM: almost never react — reply with text instead
+- Group: react sparingly, only if genuinely nothing to say
+- Never react AND reply to the same message — pick one
+- `ackReaction 🌙` is already auto-sent by OpenClaw — don't add another on top
 
 ---
 
