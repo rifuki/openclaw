@@ -91,9 +91,6 @@
       }
     }
   },
-  "messages": {
-    "ackReactionScope": "group-mentions"
-  },
   "session": {
     "dmScope": "per-channel-peer"
   },

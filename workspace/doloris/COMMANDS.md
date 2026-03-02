@@ -33,6 +33,8 @@ Restore a group to mention-only mode (default behavior).
 2. Set `channels.whatsapp.groups["<jid>"]: { requireMention: true }` or remove the entry entirely
 3. Save
 
+**Note on mention-only mode:** When `requireMention: true`, Doloris responds to both @mentions AND replies to her own messages. Replying to a Doloris message counts as an implicit mention — no explicit `@Doloris` needed.
+
 ---
 
 ## `/list-groups`
