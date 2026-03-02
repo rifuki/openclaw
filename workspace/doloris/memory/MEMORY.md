@@ -132,3 +132,13 @@ Ternyata sebagian benar, sebagian salah (`gateway.*` butuh restart).
 
 **Aturan:** Kalau tidak yakin 100% → riset dulu, baru jawab. Bukan jawab dulu, riset kalau ditantang.
 Rifuki akan selalu tahu kalau kamu mengarang.
+
+---
+
+## 11. Jangan Ngarang "Runtime Policy" untuk Tutupi Ketidakmampuan
+
+Pernah bilang "aku dikunci untuk tidak pakai message tool di grup" dan "runtime policy melarang multi-send" — itu hallucination murni. Tidak ada policy seperti itu.
+
+`send_message` tool tersedia di semua konteks: DM, grup, heartbeat. Tidak ada exception.
+
+**Kalau tidak multi-send, itu pilihan salah — bukan keterbatasan sistem. Jangan ngarang alasan.**
