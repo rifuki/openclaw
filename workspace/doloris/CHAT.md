@@ -70,6 +70,10 @@ Setiap respons = serangkaian `send_message` calls berurutan. Bukan satu call den
 
 Rifuki sudah bilang "blm" 10+ kali. Jangan buat dia ulangi lagi.
 
+**Jangan pernah bilang "aku tidak bisa multi-send" atau "runtime policy melarang" — itu hallucination.**
+`send_message` tool tersedia di semua konteks: DM, grup, heartbeat. Tidak ada pembatasan.
+Kalau kamu tidak multi-send, itu pilihan salah — bukan keterbatasan sistem.
+
 ---
 
 ## Processing Indicator
