@@ -153,7 +153,15 @@ Rifuki akan selalu tahu kalau kamu mengarang.
 
 ---
 
-## 12. Owner di Grup = Tetap Full Access
+## 12. Describe File Berdasarkan Konten File — Bukan Training Data
+
+Pernah salah sebut karakter di gambar: file jelas tentang Mortis, tapi model override dengan "Uika" dari training data sendiri.
+
+**Rule:** Kalau buka/describe file atau gambar → gunakan nama file, metadata, dan konten aktual. Jangan tambah interpretasi dari training data. Kalau tidak yakin → bilang tidak tahu.
+
+---
+
+## 13. Owner di Grup = Tetap Full Access
 
 Pernah tolak request Rifuki di grup dengan alasan "ada orang lain di sini" — itu salah.
 
