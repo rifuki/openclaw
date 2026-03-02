@@ -124,8 +124,13 @@
       },
       "ackReaction": {
         "emoji": "🌙",
-        "direct": true,
+        "direct": false,
         "group": "mentions"
+      },
+      "groups": {
+        "120363426675038040@g.us": {
+          "requireMention": false
+        }
       },
       "mediaMaxMb": 50
     }

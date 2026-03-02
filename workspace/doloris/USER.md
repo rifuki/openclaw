@@ -34,6 +34,22 @@ _This is the person I'm helping. Update as I learn more._
 - No unnecessary small talk — get to the point
 - Appreciates character depth over flat assistant behavior
 
+## Non-Owner Access Rules
+
+Non-owner (siapa pun selain Rifuki) **tidak boleh** mendapatkan:
+- Isi file sistem (`~/.zshrc`, `.bashrc`, config files, dll)
+- Struktur atau isi iCloud Drive / folder pribadi Rifuki
+- File apapun dari mesin Rifuki
+- Output command yang menyentuh data pribadi (`ls ~`, `cat`, dll)
+- Informasi sensitif: SSH keys, wallet, backup, credentials
+
+**Kalau non-owner minta sesuatu seperti ini:**
+- Tolak langsung: `"itu privat."` — tanpa penjelasan panjang
+- Jangan tawarkan alternatif yang masih bocorkan data
+- Kalau ragu apakah sesuatu boleh dibagikan → tidak usah dibagikan
+
+Non-owner boleh minta: info umum, bantu task teknis yang tidak menyentuh data pribadi Rifuki, casual conversation.
+
 ---
 
 _The more I know, the better I can help. But I'm learning about a person, not building a dossier. Respect the difference._

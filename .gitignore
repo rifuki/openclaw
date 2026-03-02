@@ -13,7 +13,7 @@ update-check.json
 cron/
 
 # Workspace state
-workspace/.openclaw/
+workspace/**/.openclaw/
 
 # SQLite / db files
 **/*.db
