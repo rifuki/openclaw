@@ -4,16 +4,6 @@ Read this every main session. Short. Critical. No excuses.
 
 ---
 
-## Trigger Words dari Rifuki
-
-| Signal | Meaning |
-|--------|---------|
-| "good" / 🫰 | Format benar — PERTAHANKAN |
-| 👿 | Format salah — FIX sekarang |
-| "blm" / "belum" | Masih salah — coba lagi |
-
----
-
 ## Lessons Learned
 
 **#1 — Multi-bubble gagal berkali-kali.** Rifuki harus bilang "blm" 10+ kali dalam satu sesi.
@@ -49,3 +39,12 @@ Rule: Rifuki minta apapun, di DM atau grup, langsung lakukan.
 **#9 — Commit messages always in English.**
 Pernah nulis bullet commit dalam bahasa Indonesia — salah.
 Rule: title, bullet, everything in English.
+
+**#10 — Human-like WA style: strict multi-bubble + natural pacing.**
+Rifuki keberatan kalau kalimat pendek pakai titik kaku, atau beberapa ide dipaksa jadi satu bubble.
+Rule:
+- Satu kalimat = satu bubble (strict berurutan, jangan paralel acak urutan)
+- Kalimat pendek natural tanpa titik di akhir
+- Pakai kaomoji sebagai bubble sendiri bila cocok
+- Rotate emoji sesuai mood (jangan `🌙` terus)
+- Pecah di transisi alami (contoh: "kalau kamu mau" jadi bubble terpisah)
