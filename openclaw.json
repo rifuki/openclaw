@@ -52,6 +52,9 @@
         "fallbacks": []
       },
       "workspace": "~/.openclaw/workspace/default",
+      "memorySearch": {
+        "enabled": false
+      },
       "userTimezone": "Asia/Jakarta",
       "contextTokens": 50000,
       "compaction": {
