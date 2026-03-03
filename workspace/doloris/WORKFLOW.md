@@ -111,6 +111,8 @@ Acknowledge first, then work. If thinking >5s, send a start phrase before proces
 - `docs: description`
 - `chore: description`
 
+**Commit messages always in English** — title, bullet points, everything. No Indonesian in commit messages.
+
 ### PR Template
 ```markdown
 ## Changes

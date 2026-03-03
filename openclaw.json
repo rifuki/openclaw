@@ -124,8 +124,10 @@
       },
       "ackReaction": {
         "emoji": "🌙",
-        "direct": false,
-        "group": "mentions"
+        "direct": false, // true = react on every DM (overack) — keep false
+        "group": "never" // always | mentions | never
+        // ack is sequential, not parallel with typing
+        // order: reaction → model loop starts → typing — the gap is normal, not a bug
       },
       "groups": {
         "120363426675038040@g.us": {
