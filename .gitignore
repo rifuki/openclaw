@@ -14,6 +14,10 @@ cron/
 
 # Workspace state
 workspace/**/.openclaw/
+workspace/doloris/memory/heartbeat-state.json
+
+# Media
+media/
 
 # SQLite / db files
 **/*.db
@@ -25,6 +29,7 @@ workspace/**/.openclaw/
 
 # Sensitive
 agents/*/agent/auth-profiles.json
+exec-approvals.json
 
 # Workspace memory (daily logs — optional, uncomment to exclude)
 # workspace/doloris/memory/
