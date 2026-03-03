@@ -1,12 +1,12 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.1",
-    "lastTouchedAt": "2026-03-03T11:37:08.311Z"
+    "lastTouchedAt": "2026-03-03T21:28:30.152Z"
   },
   "wizard": {
-    "lastRunAt": "2026-03-03T11:37:08.273Z",
+    "lastRunAt": "2026-03-03T21:28:30.145Z",
     "lastRunVersion": "2026.3.1",
-    "lastRunCommand": "configure",
+    "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
   "auth": {
@@ -15,12 +15,8 @@
         "provider": "openai-codex",
         "mode": "oauth"
       },
-      "anthropic:default": {
-        "provider": "anthropic",
-        "mode": "token"
-      },
-      "kimi-coding:default": {
-        "provider": "kimi-coding",
+      "x:default": {
+        "provider": "x",
         "mode": "api_key"
       }
     }
@@ -28,26 +24,22 @@
   "models": {
     "mode": "merge",
     "providers": {
-      "kimi-coding": {
-        "baseUrl": "https://api.kimi.com/coding/",
-        "api": "anthropic-messages",
+      "x": {
+        "baseUrl": "http://localhost:1",
+        "api": "openai-completions",
         "models": [
           {
-            "id": "k2p5",
-            "name": "Kimi for Coding",
-            "reasoning": true,
+            "id": "x",
+            "name": "x",
             "input": [
-              "text",
-              "image"
+              "text"
             ],
             "cost": {
               "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
+              "output": 0
             },
-            "contextWindow": 262144,
-            "maxTokens": 32768
+            "contextWindow": 1,
+            "maxTokens": 1
           }
         ]
       }
@@ -56,20 +48,10 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "kimi-coding/k2p5",
-        "fallbacks": [
-          "openai-codex/gpt-5.3-codex",
-          "anthropic/claude-sonnet-4-6"
-        ]
+        "primary": "openai-codex/gpt-5.3-codex",
+        "fallbacks": []
       },
-      "models": {
-        "openai-codex/gpt-5.3-codex": {},
-        "anthropic/claude-sonnet-4-6": {},
-        "kimi-coding/k2p5": {
-          "alias": "Kimi for Coding"
-        }
-      },
-      "workspace": "~/.openclaw/workspace/doloris",
+      "workspace": "~/.openclaw/workspace/default",
       "userTimezone": "Asia/Jakarta",
       "contextTokens": 50000,
       "compaction": {
@@ -96,8 +78,15 @@
     },
     "list": [
       {
-        "id": "main",
+        "id": "doloris",
         "default": true,
+        "workspace": "~/.openclaw/workspace/doloris",
+        "model": {
+          "primary": "openai-codex/gpt-5.3-codex",
+          "fallbacks": [
+            "kimi-doloris/k2p5"
+          ]
+        },
         "identity": {
           "name": "Doloris",
           "emoji": "🌙"
@@ -107,6 +96,27 @@
             "[Dd]oloris",
             "[Hh]atsune",
             "[Uu]ika"
+          ]
+        }
+      },
+      {
+        "id": "miku",
+        "default": false,
+        "workspace": "~/.openclaw/workspace/miku",
+        "model": {
+          "primary": "kimi-miku/k2p5",
+          "fallbacks": [
+            "openai-codex/gpt-5.3-codex"
+          ]
+        },
+        "identity": {
+          "name": "Hatsune Miku",
+          "emoji": "🎵"
+        },
+        "groupChat": {
+          "mentionPatterns": [
+            "[Mm]iku",
+            "[Hh]atsune"
           ]
         }
       }
@@ -124,10 +134,17 @@
   },
   "bindings": [
     {
-      "agentId": "main",
+      "agentId": "doloris",
       "match": {
         "channel": "whatsapp",
-        "accountId": "default"
+        "accountId": "doloris"
+      }
+    },
+    {
+      "agentId": "miku",
+      "match": {
+        "channel": "whatsapp",
+        "accountId": "miku"
       }
     }
   ],
@@ -145,33 +162,54 @@
     "whatsapp": {
       "enabled": true,
       "dmPolicy": "open",
-      "selfChatMode": false,
-      "allowFrom": [
-        "*"
-      ],
+      "allowFrom": ["*"],
       "groupPolicy": "open",
-      "textChunkLimit": 3500,
-      "chunkMode": "length",
+      "allowFrom": ["*"],
       "groups": {
         "120363426675038040@g.us": {
           "requireMention": false
         }
       },
-      "ackReaction": {
-        "emoji": "🌙",
-        "direct": false,
-        "group": "never"
-      },
       "debounceMs": 0,
       "accounts": {
-        "default": {
+        "doloris": {
           "dmPolicy": "open",
           "allowFrom": [
             "*"
           ],
           "groupPolicy": "open",
+          "textChunkLimit": 3500,
+          "chunkMode": "length",
+          "ackReaction": {
+            "emoji": "🌙",
+            "direct": false,
+            "group": "never"
+          },
           "debounceMs": 0,
-          "name": "doloris"
+          "name": "doloris",
+          "mediaMaxMb": 50
+        },
+        "miku": {
+          "dmPolicy": "open",
+          "allowFrom": [
+            "*"
+          ],
+          "groupPolicy": "open",
+          "textChunkLimit": 3500,
+          "chunkMode": "length",
+          "ackReaction": {
+            "emoji": "🎵",
+            "direct": false,
+            "group": "never"
+          },
+          "debounceMs": 0,
+          "name": "hatsune_miku",
+          "mediaMaxMb": 50
+        },
+        "default": {
+          "dmPolicy": "pairing",
+          "groupPolicy": "allowlist",
+          "debounceMs": 0
         }
       },
       "mediaMaxMb": 50

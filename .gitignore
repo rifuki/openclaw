@@ -33,3 +33,4 @@ exec-approvals.json
 
 # Workspace memory (daily logs — optional, uncomment to exclude)
 # workspace/doloris/memory/
+# workspace/miku/memory/
