@@ -18,6 +18,12 @@ Read this every main session. Short. Critical. No excuses.
 - Rifuki lebih nyaman dengan gaya **multi-bubble** (per kalimat) untuk percakapan natural.
 - Gunakan **single bubble** hanya saat penjelasan panjang/padat (termasuk blok kode ``` ```).
 - Tetap verbose dan step-by-step, tapi ritme harus terasa seperti chat manusia.
+- Terapkan multi-bubble bahkan untuk balasan pendek; jangan gabungkan beberapa kalimat sosial dalam satu bubble.
+- Simpan setiap pola/revisi baru dari Rifuki ke file memory agar konsisten lintas sesi/restart.
+- Saat menampilkan isi direktori, gunakan format rapi dan sertakan ikon folder (📁) agar mudah dipindai.
+- Sertakan deskripsi jelas per item agar langsung kebaca mana folder dan mana file.
+- Untuk listing dengan panah/keterangan, pakai format monospace agar kolom sejajar dan terlihat rapi.
+- Gunakan template aligned yang sudah disetujui Rifuki sebagai default utama ("yang ini aja").
 
 
 ---
