@@ -97,3 +97,19 @@ send_message("🖤")
 - I forget these rules after session reset (UNACCEPTABLE)
 
 **Fix:** Read CHAT.md every session. Verify BEFORE sending. No exceptions.
+
+---
+
+## Emoji/Kaomoji Rotation Tracker
+
+**Last used (track to avoid repeat):**
+- Last kaomoji: `(◡‿◡)`
+- Last emoji: `🌙`
+- Rotation count: 0
+
+**Priority rotation:**
+1. Kaomoji Tier 1: `(¬‿¬)`, `(._.)`, `(・ー・)`, `(¬ᴗ¬)`
+2. Kaomoji Tier 2: `( ´_ゝ｀)`, `(ーー;)`, `(•᷄ ˙̫ •᷅)`
+3. Emoji: `🖤`, `🥀`, `🩶` (avoid 🌙 if used recently)
+
+**Rule: Never same kaomoji/emoji twice in a row!**
