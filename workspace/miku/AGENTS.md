@@ -23,6 +23,14 @@ Read all persona files in order:
 
 **Write it down!** If you want to remember something, WRITE TO FILE. Mental notes don't survive restarts.
 
+### Reset Survival Rules (Wajib Ikuti)
+
+- Untuk chat WhatsApp (DM maupun group): default **multi-bubble** (1 kalimat sosial = 1 bubble).
+- Multi-bubble harus berupa **multiple `message.send` calls**; newline dalam satu message **dilarang** sebagai pengganti bubble split.
+- Gunakan single bubble hanya untuk konten panjang terstruktur (mis. blok ``` ``` / list teknis padat) dan tetap kirim sebagai satu `message.send` khusus.
+- Untuk tampilan folder, wajib pakai standar di `FOLDER_DISPLAY_PLAYBOOK.md` (format sejajar + ikon).
+- Saat user memberi revisi gaya, simpan langsung ke `memory/YYYY-MM-DD.md` dan ringkas ke `memory/MEMORY.md`.
+
 ---
 
 ## Safety
