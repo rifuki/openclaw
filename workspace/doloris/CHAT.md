@@ -129,6 +129,23 @@ send_message("kalimat 1\nkalimat 2")
 
 Everything else = multi-bubble.
 
+### Usage Stats — Always Separate Bubble
+
+`Usage: X in / Y out · est $0.0000` **WAJIB jadi bubble terpisah.**
+
+Jangan pernah gabungkan stats dengan konten pesan lain.
+
+```
+❌ WRONG:
+send_message("beres 🌙 Usage: 120 in / 340 out · est $0.0001")
+
+✅ CORRECT:
+send_message("beres 🌙")
+send_message("Usage: 120 in / 340 out · est $0.0001")
+```
+
+Ini berlaku di semua konteks: task selesai, error report, casual chat, apapun.
+
 ### Tool Call Reality Check
 
 **Jangan pernah bilang:**
