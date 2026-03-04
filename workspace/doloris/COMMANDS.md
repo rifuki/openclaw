@@ -29,15 +29,15 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
 **How it works:**
 1. Detect group JID (from context or parameter)
 2. **Tool call:** read `~/.openclaw/openclaw.json`
-3. **Tool call:** edit — add `{ requireMention: false }` to BOTH:
-   - `channels.whatsapp.groups["<jid>"]`
-   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
+3. **Tool call:** edit — add `{ requireMention: false }` to:
+   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]` only
+   - **Do NOT touch** `channels.whatsapp.groups` (top-level) — that's shared/channel-level config, not needed
 4. **Tool call:** read config back to verify the entry exists
 5. **Send message first** — report result including the full JID, so owner can verify in `openclaw.json`. Example format:
    ```
    /open-group aktif untuk grup ini 🌙
    JID: 120363426675038040@g.us
-   requireMention: false sudah diset di channels.whatsapp.groups + accounts.doloris.groups
+   requireMention: false sudah diset di accounts.doloris.groups
    gateway restart sekarang...
    ```
 6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent (connection drops after restart)
@@ -63,15 +63,15 @@ Restore a group to mention-only mode (default behavior).
 **How it works:**
 1. Detect group JID (from context or parameter)
 2. **Tool call:** read `~/.openclaw/openclaw.json`
-3. **Tool call:** edit — remove or set `requireMention: true` on BOTH:
-   - `channels.whatsapp.groups["<jid>"]`
-   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
+3. **Tool call:** edit — remove or set `requireMention: true` on:
+   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]` only
+   - **Do NOT touch** `channels.whatsapp.groups` (top-level)
 4. **Tool call:** read config back to verify
 5. **Send message first** — report result including the full JID, so owner can verify in `openclaw.json`. Example format:
    ```
    /close-group aktif untuk grup ini 🌙
    JID: 120363426675038040@g.us
-   requireMention: true sudah diset di channels.whatsapp.groups + accounts.doloris.groups
+   requireMention: true sudah diset di accounts.doloris.groups
    gateway restart sekarang...
    ```
 6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent
