@@ -58,6 +58,12 @@ openclaw channels login --channel whatsapp --account doloris
 openclaw channels login --channel whatsapp --account miku
 ```
 
+Script helper:
+
+```bash
+~/.openclaw/scripts/login-whatsapp-accounts.sh doloris miku
+```
+
 Credentials land in:
 
 - `~/.openclaw/credentials/whatsapp/doloris/`
@@ -146,11 +152,37 @@ openclaw models auth order get --agent doloris --provider openai-codex
 openclaw models auth order get --agent miku --provider openai-codex
 ```
 
+## 6) Single-agent mode (optional)
+
+Switch to one active agent only (updates `agents.list`, `bindings`, and
+`channels.whatsapp.accounts` in config):
+
+```bash
+# Doloris-only mode
+~/.openclaw/scripts/switch-active-agent.sh doloris
+
+# Miku-only mode
+~/.openclaw/scripts/switch-active-agent.sh miku
+```
+
+The script creates a config backup before changing anything.
+
+## 7) Unlink/remove WhatsApp account(s) (optional)
+
+Logout and remove one or more WhatsApp accounts from config:
+
+```bash
+~/.openclaw/scripts/unlink-whatsapp-accounts.sh doloris
+~/.openclaw/scripts/unlink-whatsapp-accounts.sh doloris miku
+```
+
 ## Notes
 
 - Avoid `openclaw doctor --fix` unless needed.
 - If `doctor`/`configure` reintroduces `openai-codex:default`, rerun step 4 for the same agent.
 - `normalize-codex-auth.sh` skips agents that do not have an auth store file yet.
+- `switch-active-agent.sh` does not create missing agents/accounts; target must already exist.
+- `unlink-whatsapp-accounts.sh` performs `channels logout` + `channels remove`.
 - Kimi keys are static API keys in each agent auth file:
   - `~/.openclaw/agents/doloris/agent/auth-profiles.json`
   - `~/.openclaw/agents/miku/agent/auth-profiles.json`
