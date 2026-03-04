@@ -142,9 +142,33 @@ if has_reply_context == true => prepend "[[reply_to_current]] " only on first bu
 
 Rule M2: Subsequent bubbles MUST NOT include reply tag.
 
+Rule M2.1 (Hard Gate): Newline is not bubble split.
+```text
+if mode == multi_bubble and message contains >1 semantic sentence and no codeblock:
+  FORBID single send call with '\n' as pseudo split
+  REQUIRE N separate message.send calls
+```
+
+Rule M2.2 (Preflight):
+```text
+before emit:
+  if planned_calls == 1 and sentence_count > 1 and no_code_block:
+    auto-split into per-sentence bubbles
+```
+
 Rule M3: Preserve order.
 - Preferred: sequential calls.
 - Optional: parallel dispatch only if transport preserves order; otherwise avoid.
+
+Rule M3.1 (Scope Robustness):
+- Apply identical bubble policy in WhatsApp DM and WhatsApp group.
+- Do not downgrade to newline-only formatting on new/reset sessions.
+
+Rule M3.2 (Send Contract):
+```text
+for each social sentence S_i:
+  emit one message.send call with S_i
+```
 
 Rule M4: Tool call format.
 ```json

@@ -95,3 +95,11 @@ Contoh:
 ## One-Line Reminder for Other AIs
 
 "Untuk tampilan folder Rifuki: selalu pakai blok ```text``` yang sejajar, ikon tipe item (📁/📄/🖼️), format `<ikon> <nama> ← <tipe>`, dan sertakan contoh approved style bila perlu."
+
+---
+
+## Hard Guardrail (WA Messages)
+
+- Multi-bubble = multiple `message.send` calls.
+- Newline dalam satu pesan tetap satu bubble (tidak valid sebagai split).
+- Jika respons sosial lebih dari satu kalimat, pecah per kalimat sebelum kirim.
