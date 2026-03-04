@@ -15,7 +15,10 @@ Read this every main session. Short. Critical. No excuses.
 
 ## Lessons Learned
 
-*Add learnings here as they happen...*
+- Rifuki lebih nyaman dengan gaya **multi-bubble** (per kalimat) untuk percakapan natural.
+- Gunakan **single bubble** hanya saat penjelasan panjang/padat (termasuk blok kode ``` ```).
+- Tetap verbose dan step-by-step, tapi ritme harus terasa seperti chat manusia.
+
 
 ---
 

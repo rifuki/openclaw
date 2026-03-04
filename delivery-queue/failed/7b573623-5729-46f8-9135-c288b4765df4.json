@@ -1,0 +1,26 @@
+{
+  "id": "7b573623-5729-46f8-9135-c288b4765df4",
+  "enqueuedAt": 1772650191663,
+  "channel": "whatsapp",
+  "to": "120363424351851411@g.us",
+  "accountId": "doloris",
+  "payloads": [
+    {
+      "text": "/open-group aktif untuk grup ini 🌙",
+      "replyToTag": true,
+      "replyToCurrent": true,
+      "audioAsVoice": false
+    }
+  ],
+  "threadId": null,
+  "replyToId": null,
+  "mirror": {
+    "sessionKey": "agent:doloris:whatsapp:group:120363424351851411@g.us",
+    "agentId": "doloris",
+    "text": "/open-group aktif untuk grup ini 🌙",
+    "mediaUrls": []
+  },
+  "retryCount": 5,
+  "lastAttemptAt": 1772656305227,
+  "lastError": "No active WhatsApp Web listener (account: doloris). Start the gateway, then link WhatsApp with: openclaw channels login --channel whatsapp --account doloris."
+}
