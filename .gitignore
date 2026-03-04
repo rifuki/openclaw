@@ -34,3 +34,7 @@ exec-approvals.json
 # Workspace memory (daily logs — optional, uncomment to exclude)
 # workspace/doloris/memory/
 # workspace/miku/memory/
+
+# Keep automation scripts tracked in git
+!scripts/
+!scripts/*.sh
