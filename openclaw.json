@@ -72,9 +72,9 @@
         "default": true,
         "workspace": "~/.openclaw/workspace/doloris",
         "model": {
-          "primary": "kimi-miku/k2p5",
+          "primary": "openai-codex/gpt-5.3-codex",
           "fallbacks": [
-            "openai-codex/gpt-5.3-codex"
+            "kimi-miku/k2p5"
           ]
         },
         "identity": {
@@ -160,13 +160,10 @@
         "*"
       ],
       "groups": {
-        "120363426675038040@g.us": {
-          "requireMention": false
+        "*": {
+          "requireMention": true
         },
-        "120363425848948418@g.us": {
-          "requireMention": false
-        },
-        "120363423056989251@g.us": {
+        "120363407344095162@g.us": {
           "requireMention": false
         }
       },
@@ -182,13 +179,7 @@
             "*"
           ],
           "groups": {
-            "120363426675038040@g.us": {
-              "requireMention": false
-            },
-            "120363425848948418@g.us": {
-              "requireMention": false
-            },
-            "120363423056989251@g.us": {
+            "120363407344095162@g.us": {
               "requireMention": false
             }
           },
@@ -212,17 +203,7 @@
           "groupAllowFrom": [
             "*"
           ],
-          "groups": {
-            "120363426675038040@g.us": {
-              "requireMention": false
-            },
-            "120363425848948418@g.us": {
-              "requireMention": false
-            },
-            "120363423056989251@g.us": {
-              "requireMention": false
-            }
-          },
+          "groups": {},
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {

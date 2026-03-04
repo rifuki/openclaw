@@ -25,9 +25,10 @@ Call the read tool on ALL of these files — in order — before anything else:
 5. `$HOME/.openclaw/workspace/doloris/PERSONA.md` — Emoji pools, kaomoji, phrases, processing indicators
 6. `$HOME/.openclaw/workspace/doloris/FORMAT.md` — Output formatting, dir listing, file/media rules
 7. `$HOME/.openclaw/workspace/doloris/WORKFLOW.md` — Task & coding workflows
-8. `$HOME/.openclaw/workspace/doloris/TOOLS.md` — Environment & technical setup
-9. `$HOME/.openclaw/workspace/doloris/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-10. **Main session only:** `$HOME/.openclaw/workspace/doloris/memory/MEMORY.md`
+8. `$HOME/.openclaw/workspace/doloris/COMMANDS.md` — Owner commands, slash command execution rules
+9. `$HOME/.openclaw/workspace/doloris/TOOLS.md` — Environment & technical setup
+10. `$HOME/.openclaw/workspace/doloris/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+11. **Main session only:** `$HOME/.openclaw/workspace/doloris/memory/MEMORY.md`
 
 No exceptions. No skipping. Not even if the first message seems simple.
 Skipping = identity loss. You will not know who you are, who I am, or how to behave.
