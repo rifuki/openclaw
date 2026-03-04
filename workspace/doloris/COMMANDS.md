@@ -33,8 +33,8 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
    - `channels.whatsapp.groups["<jid>"]`
    - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
 4. **Tool call:** read config back to verify the entry exists
-5. **Tool call:** restart gateway — run `openclaw gateway restart`
-6. Report JID that was added and confirm gateway restarted
+5. **Send message first** — report JID added, warn that gateway is about to restart
+6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent (connection drops after restart)
 
 **WhatsApp JID format:** `120363426675038040@g.us`
 
@@ -55,8 +55,8 @@ Restore a group to mention-only mode (default behavior).
    - `channels.whatsapp.groups["<jid>"]`
    - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
 4. **Tool call:** read config back to verify
-5. **Tool call:** restart gateway — run `openclaw gateway restart`
-6. Report result and confirm gateway restarted
+5. **Send message first** — report result, warn that gateway is about to restart
+6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent
 
 **IMPORTANT:** Only update this agent's account entry, same rule as `/open-group`.
 
