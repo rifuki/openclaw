@@ -6,6 +6,7 @@ CONFIG_PATH="${OPENCLAW_CONFIG_PATH:-$STATE_DIR/openclaw.json}"
 PURGE_MAIN_DEFAULT=0
 PURGE_ALL_DEFAULTS=0
 AGENT_ARGS=""
+SKIP_CONFIRM=0
 
 for arg in "$@"; do
   case "$arg" in
@@ -15,9 +16,12 @@ for arg in "$@"; do
     --purge-all-defaults)
       PURGE_ALL_DEFAULTS=1
       ;;
+    --yes|-y)
+      SKIP_CONFIRM=1
+      ;;
     --*)
       echo "error: unknown option: $arg" >&2
-      echo "usage: $0 [--purge-main-default] [--purge-all-defaults] <agentId...>" >&2
+      echo "usage: $0 [--purge-main-default] [--purge-all-defaults] [--yes] <agentId...>" >&2
       exit 1
       ;;
     *)
@@ -50,6 +54,44 @@ fi
 if [ -z "$AGENT_IDS_RAW" ]; then
   echo "no agents found in $CONFIG_PATH"
   exit 0
+fi
+
+# Count agents
+AGENT_COUNT=$(echo "$AGENT_IDS_RAW" | grep -c '^' || true)
+
+# Show warning for multiple agents
+if [ "$AGENT_COUNT" -gt 1 ] && [ "$SKIP_CONFIRM" -eq 0 ]; then
+  echo ""
+  echo "⚠️  WARNING: Multiple agents detected ($AGENT_COUNT agents)"
+  echo ""
+  echo "Agents to be normalized:"
+  echo "$AGENT_IDS_RAW" | sed 's/^/  - /'
+  echo ""
+  echo "🚨 IMPORTANT: This will share the SAME Codex OAuth credentials across all agents!"
+  echo "   Each agent will get its own profile (openai-codex:<agent>), but they will"
+  echo "   all use the SAME underlying API key/account."
+  echo ""
+  echo "   If you want SEPARATE accounts for each agent, you must:"
+  echo "   1. Run this script for ONE agent at a time"
+  echo "   2. Manually re-authenticate with different accounts between runs"
+  echo ""
+  read -p "Continue? (y/N): " confirm
+  if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+    echo "Aborted."
+    exit 0
+  fi
+  echo ""
+elif [ "$AGENT_COUNT" -eq 1 ] && [ "$SKIP_CONFIRM" -eq 0 ]; then
+  AGENT_NAME=$(echo "$AGENT_IDS_RAW" | head -1)
+  echo ""
+  echo "This will normalize Codex auth for: $AGENT_NAME"
+  echo ""
+  read -p "Continue? (y/N): " confirm
+  if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+    echo "Aborted."
+    exit 0
+  fi
+  echo ""
 fi
 
 changed=0
