@@ -160,9 +160,6 @@
         "*"
       ],
       "groups": {
-        "*": {
-          "requireMention": true
-        },
         "120363407344095162@g.us": {
           "requireMention": false
         }
@@ -179,6 +176,7 @@
             "*"
           ],
           "groups": {
+            "*": {},
             "120363407344095162@g.us": {
               "requireMention": false
             }
@@ -217,7 +215,7 @@
         },
         "default": {
           "dmPolicy": "pairing",
-          "groupPolicy": "allowlist",
+          "groupPolicy": "open",
           "debounceMs": 0
         }
       },
