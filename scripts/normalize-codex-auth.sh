@@ -4,11 +4,32 @@ set -euo pipefail
 STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 CONFIG_PATH="${OPENCLAW_CONFIG_PATH:-$STATE_DIR/openclaw.json}"
 PURGE_MAIN_DEFAULT=0
+PURGE_ALL_DEFAULTS=0
+AGENT_ARGS=""
 
-if [ "${1:-}" = "--purge-main-default" ]; then
-  PURGE_MAIN_DEFAULT=1
-  shift
-fi
+for arg in "$@"; do
+  case "$arg" in
+    --purge-main-default)
+      PURGE_MAIN_DEFAULT=1
+      ;;
+    --purge-all-defaults)
+      PURGE_ALL_DEFAULTS=1
+      ;;
+    --*)
+      echo "error: unknown option: $arg" >&2
+      echo "usage: $0 [--purge-main-default] [--purge-all-defaults] <agentId...>" >&2
+      exit 1
+      ;;
+    *)
+      if [ -z "$AGENT_ARGS" ]; then
+        AGENT_ARGS="$arg"
+      else
+        AGENT_ARGS="$AGENT_ARGS
+$arg"
+      fi
+      ;;
+  esac
+done
 
 if ! command -v jq >/dev/null 2>&1; then
   echo "error: jq is required" >&2
@@ -20,8 +41,8 @@ if [ ! -f "$CONFIG_PATH" ]; then
   exit 1
 fi
 
-if [ "$#" -gt 0 ]; then
-  AGENT_IDS_RAW=$(printf '%s\n' "$@")
+if [ -n "$AGENT_ARGS" ]; then
+  AGENT_IDS_RAW=$(printf '%b\n' "$AGENT_ARGS")
 else
   AGENT_IDS_RAW=$(jq -r '.agents.list[]?.id // empty' "$CONFIG_PATH")
 fi
@@ -38,7 +59,7 @@ while IFS= read -r agent_id; do
   auth_file="$STATE_DIR/agents/$agent_id/agent/auth-profiles.json"
 
   if [ ! -f "$auth_file" ]; then
-    echo "skip $agent_id: missing $auth_file"
+    echo "[SKIP] $agent_id -> auth store missing"
     continue
   fi
 
@@ -46,7 +67,7 @@ while IFS= read -r agent_id; do
   has_agent=$(jq -r --arg aid "$agent_id" '.profiles | has("openai-codex:" + $aid)' "$auth_file")
 
   if [ "$has_default" != "true" ] && [ "$has_agent" != "true" ]; then
-    echo "skip $agent_id: no codex profile found"
+    echo "[SKIP] $agent_id -> no openai-codex profile found"
     continue
   fi
 
@@ -58,20 +79,20 @@ while IFS= read -r agent_id; do
       | del(.profiles["openai-codex:default"])
       | .order["openai-codex"] = ["openai-codex:" + $aid]
     ' "$auth_file" > "$tmp_file"
-    echo "updated $agent_id: promoted openai-codex:default -> openai-codex:$agent_id"
+    echo "[OK]   $agent_id -> promoted openai-codex:default to openai-codex:$agent_id"
     changed=1
   elif [ "$has_default" = "true" ] && [ "$has_agent" = "true" ]; then
     jq --arg aid "$agent_id" '
       del(.profiles["openai-codex:default"])
       | .order["openai-codex"] = ["openai-codex:" + $aid]
     ' "$auth_file" > "$tmp_file"
-    echo "updated $agent_id: kept openai-codex:$agent_id and removed openai-codex:default"
+    echo "[OK]   $agent_id -> removed openai-codex:default, kept openai-codex:$agent_id"
     changed=1
   else
     jq --arg aid "$agent_id" '
       .order["openai-codex"] = ["openai-codex:" + $aid]
     ' "$auth_file" > "$tmp_file"
-    echo "updated $agent_id: pinned order to openai-codex:$agent_id"
+    echo "[OK]   $agent_id -> pinned order to openai-codex:$agent_id"
     changed=1
   fi
 
@@ -79,18 +100,26 @@ while IFS= read -r agent_id; do
 done <<< "$AGENT_IDS_RAW"
 
 if [ "$changed" -eq 1 ]; then
-  echo "done: normalized codex auth profiles"
-  echo "next: run 'openclaw gateway restart'"
+  echo "[DONE] Codex auth normalization completed"
+  echo "[NEXT] openclaw gateway restart"
 else
-  echo "done: nothing to change"
+  echo "[DONE] No changes needed"
 fi
 
 if [ "$PURGE_MAIN_DEFAULT" -eq 1 ]; then
   main_auth="$STATE_DIR/agents/main/agent/auth-profiles.json"
   if [ -f "$main_auth" ]; then
     jq 'del(.profiles["openai-codex:default"])' "$main_auth" > "$main_auth.tmp" && mv "$main_auth.tmp" "$main_auth"
-    echo "purged: openai-codex:default from agents/main auth store"
+    echo "[OK]   main -> purged openai-codex:default"
   else
-    echo "skip purge: no $main_auth"
+    echo "[SKIP] main -> no auth store found"
   fi
+fi
+
+if [ "$PURGE_ALL_DEFAULTS" -eq 1 ]; then
+  for auth in "$STATE_DIR"/agents/*/agent/auth-profiles.json; do
+    [ -f "$auth" ] || continue
+    jq 'del(.profiles["openai-codex:default"])' "$auth" > "$auth.tmp" && mv "$auth.tmp" "$auth"
+    echo "[OK]   $(basename "$(dirname "$(dirname "$auth")")") -> purged openai-codex:default"
+  done
 fi
