@@ -79,7 +79,7 @@
         },
         "identity": {
           "name": "Doloris",
-          "emoji": "🌙"
+          "emoji": "\ud83c\udf19"
         },
         "groupChat": {
           "mentionPatterns": [
@@ -101,7 +101,7 @@
         },
         "identity": {
           "name": "Hatsune Miku",
-          "emoji": "🎵"
+          "emoji": "\ud83c\udfb5"
         },
         "groupChat": {
           "mentionPatterns": [
@@ -160,7 +160,11 @@
         "*"
       ],
       "groups": {
-        "120363407344095162@g.us": {
+        "*": {},
+        "120363405893049543@g.us": {
+          "requireMention": false
+        },
+        "120363405899416308@g.us": {
           "requireMention": false
         }
       },
@@ -177,17 +181,20 @@
           ],
           "groups": {
             "*": {},
-            "120363407344095162@g.us": {
+            "120363409050928326@g.us": {
               "requireMention": false
             },
-            "120363423885927820@g.us": {
+            "120363405893049543@g.us": {
+              "requireMention": false
+            },
+            "120363405899416308@g.us": {
               "requireMention": false
             }
           },
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {
-            "emoji": "🌙",
+            "emoji": "\ud83c\udf19",
             "direct": false,
             "group": "never"
           },
@@ -204,11 +211,13 @@
           "groupAllowFrom": [
             "*"
           ],
-          "groups": {},
+          "groups": {
+            "*": {}
+          },
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {
-            "emoji": "🎵",
+            "emoji": "\ud83c\udfb5",
             "direct": false,
             "group": "never"
           },
