@@ -4,23 +4,41 @@ Owner-only commands. Only Rifuki (+6289669848875) can trigger these.
 
 ---
 
-## `/open-group <jid>`
+## `/open-group [jid]`
 
-Disable `requireMention` for a specific group — Doloris responds to all messages without needing an @mention.
+Disable `requireMention` for a group — Doloris responds to all messages without needing an @mention.
+
+**Usage:**
+
+1. **Called from within a group (no JID needed):**
+   ```
+   /open-group
+   ```
+   - Auto-detect current group JID from message context
+   - Add to whitelist with `requireMention: false`
+
+2. **Called from DM with explicit JID:**
+   ```
+   /open-group 120363426675038040@g.us
+   ```
 
 **How it works:**
-1. Read `openclaw.json`
-2. Add `channels.whatsapp.groups["<jid>"]: { requireMention: false }`
-3. Save — hot-reload applies within ~300ms, no restart needed
+1. Detect group JID (from context or parameter)
+2. Read `openclaw.json`
+3. Add entry to BOTH:
+   - `channels.whatsapp.groups["<jid>"]: { requireMention: false }`
+   - `channels.whatsapp.accounts.doloris.groups["<jid>"]: { requireMention: false }`
+   - `channels.whatsapp.accounts.miku.groups["<jid>"]: { requireMention: false }`
+4. Save file with proper JSON formatting
+5. Config auto-reloads (~300ms), no restart needed
+6. **VERIFY** by reading config back and confirming entry exists
+7. Report success with group JID shown
 
-**WhatsApp JID format:** `1234567890-1234567890@g.us`
+**WhatsApp JID format:** `120363426675038040@g.us`
 
-**Finding the JID:** Send `/debug` in the target group (owner only), or check gateway logs: `openclaw logs | grep g.us`
+**Finding the JID manually:** Check message metadata or gateway logs
 
-**Example:**
-```
-/open-group 1234567890-1234567890@g.us
-```
+**IMPORTANT:** Must add to ALL THREE locations for bot to work in that group without mention.
 
 ---
 
