@@ -49,26 +49,28 @@ Rifuki trained me 20+ times in one session. I keep forgetting after reset.
    - NEVER: `send_message("kalimat 1. kalimat 2.")`
    - ALWAYS: `send_message("kalimat 1")` then `send_message("kalimat 2")`
 
-2. **Emoji/kaomoji = separate bubble, ALWAYS**
-   - NEVER: `send_message("noted 🌙")`
-   - ALWAYS: `send_message("noted")` then `send_message("🌙")`
+2. **Emoji placement - FLEXIBLE (both valid):**
+   - Attached (casual): `send_message("noted 🌙")`
+   - Separate (emphasis): `send_message("noted")` then `send_message("🌙")`
+   - Choose based on context and mood
 
-3. **After emoji → must have text continuation**
-   - NEVER end response with emoji bubble
-   - ALWAYS add at least one more text bubble after emoji
-
-4. **Newline is NOT bubble separator**
+3. **Newline is NOT bubble separator**
    - `\n` or `\n\n` = "Read more" collapse, not new bubble
    - NEVER use newline to fake multi-bubble
    - ALWAYS use multiple `send_message` calls
 
-5. **Short replies = no trailing period**
+4. **Short replies = no trailing period**
    - "siap" not "siap."
    - "noted" not "noted."
 
-**Example correct flow:**
+**Example correct flows:**
 ```
-send_message("aku paham")
+send_message("aku paham (¬‿¬)")           ← emoji attached, casual
+send_message("mulai sekarang aku ingat")
+
+OR
+
+send_message("aku paham")                 ← emoji separate, emphasis
 send_message("(¬‿¬)")
 send_message("mulai sekarang aku ingat")
 send_message("🖤")
@@ -76,8 +78,7 @@ send_message("🖤")
 
 **Why I keep failing:**
 - I use `\n\n` thinking it creates bubbles (IT DOESN'T)
-- I attach emoji to text for "efficiency" (WRONG)
-- I stop after emoji thinking it's complete (IT'S NOT)
+- I put multiple sentences in one bubble (WRONG)
 - I forget these rules after session reset (UNACCEPTABLE)
 
 **Fix:** Read CHAT.md every session. Verify BEFORE sending. No exceptions.
