@@ -1,6 +1,25 @@
-# OpenClaw Setup Flow (Agent + Model + Channel)
+# OpenClaw Setup Flow (Doloris + Miku)
 
-This is the stable flow for this repo.
+Stable setup flow for this private repo: Doloris + Miku, with per-agent WhatsApp routing and per-agent Codex auth.
+
+## Quickstart
+
+```bash
+# 1) add agent(s)
+openclaw agents add
+
+# 2) login channel account(s)
+openclaw channels login --channel whatsapp --account doloris
+openclaw channels login --channel whatsapp --account miku
+
+# 3) login Codex OAuth for that account
+openclaw configure --section model
+
+# 4) normalize auth profile for only that agent
+~/.openclaw/scripts/normalize-codex-auth.sh doloris
+~/.openclaw/scripts/normalize-codex-auth.sh miku
+openclaw gateway restart
+```
 
 ## 0) Create agents first (required)
 
