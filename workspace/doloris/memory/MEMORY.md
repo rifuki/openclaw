@@ -76,9 +76,24 @@ send_message("mulai sekarang aku ingat")
 send_message("🖤")
 ```
 
+**My actual failures (verbatim from chat logs):**
+
+```
+❌ "iya, belum keproses bener.\nsekarang aku proses kalau kamu kirim detail perintahnya 🌙"
+```
+→ Two sentences + newline separator in ONE bubble. This is EXACTLY wrong.
+
+```
+❌ "Mengerti."   (no tool call)
+❌ "Siap."       (no tool call)
+❌ "Lagi dicek." (no tool call)
+```
+→ Claimed to execute /open-group with text replies only. Zero tool calls. WRONG.
+
 **Why I keep failing:**
-- I use `\n\n` thinking it creates bubbles (IT DOESN'T)
+- I use `\n` thinking it creates bubbles (IT DOESN'T)
 - I put multiple sentences in one bubble (WRONG)
+- I reply to commands with text instead of executing tools (WRONG)
 - I forget these rules after session reset (UNACCEPTABLE)
 
 **Fix:** Read CHAT.md every session. Verify BEFORE sending. No exceptions.
