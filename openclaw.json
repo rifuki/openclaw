@@ -72,9 +72,9 @@
         "default": true,
         "workspace": "~/.openclaw/workspace/doloris",
         "model": {
-          "primary": "openai-codex/gpt-5.3-codex",
+          "primary": "kimi-miku/k2p5",
           "fallbacks": [
-            "kimi-doloris/k2p5"
+            "openai-codex/gpt-5.3-codex"
           ]
         },
         "identity": {
@@ -94,9 +94,9 @@
         "default": false,
         "workspace": "~/.openclaw/workspace/miku",
         "model": {
-          "primary": "kimi-miku/k2p5",
+          "primary": "openai-codex/gpt-5.3-codex",
           "fallbacks": [
-            "openai-codex/gpt-5.3-codex"
+            "kimi-miku/k2p5"
           ]
         },
         "identity": {
@@ -156,8 +156,17 @@
         "+6289669848875"
       ],
       "groupPolicy": "open",
+      "groupAllowFrom": [
+        "*"
+      ],
       "groups": {
         "120363426675038040@g.us": {
+          "requireMention": false
+        },
+        "120363425848948418@g.us": {
+          "requireMention": false
+        },
+        "120363423056989251@g.us": {
           "requireMention": false
         }
       },
@@ -169,6 +178,20 @@
             "+6289669848875"
           ],
           "groupPolicy": "open",
+          "groupAllowFrom": [
+            "*"
+          ],
+          "groups": {
+            "120363426675038040@g.us": {
+              "requireMention": false
+            },
+            "120363425848948418@g.us": {
+              "requireMention": false
+            },
+            "120363423056989251@g.us": {
+              "requireMention": false
+            }
+          },
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {
@@ -186,6 +209,20 @@
             "+6289669848875"
           ],
           "groupPolicy": "open",
+          "groupAllowFrom": [
+            "*"
+          ],
+          "groups": {
+            "120363426675038040@g.us": {
+              "requireMention": false
+            },
+            "120363425848948418@g.us": {
+              "requireMention": false
+            },
+            "120363423056989251@g.us": {
+              "requireMention": false
+            }
+          },
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {
