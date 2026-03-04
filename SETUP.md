@@ -2,6 +2,8 @@
 
 Stable setup flow for this private repo: Doloris + Miku, with per-agent WhatsApp routing and per-agent Codex auth.
 
+For fresh VPS single-agent deployment, see `SETUP_VPS.md`.
+
 ## Quickstart
 
 ```bash
