@@ -1,12 +1,12 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.1",
-    "lastTouchedAt": "2026-03-03T21:28:30.152Z"
+    "lastTouchedAt": "2026-03-04T10:24:49.905Z"
   },
   "wizard": {
-    "lastRunAt": "2026-03-03T21:28:30.145Z",
+    "lastRunAt": "2026-03-04T10:24:49.862Z",
     "lastRunVersion": "2026.3.1",
-    "lastRunCommand": "doctor",
+    "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
   "auth": {
@@ -26,37 +26,24 @@
     "providers": {
       "x": {
         "baseUrl": "http://localhost:1",
-        "api": "openai-completions",
-        "models": [
-          {
-            "id": "x",
-            "name": "x",
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0
-            },
-            "contextWindow": 1,
-            "maxTokens": 1
-          }
-        ]
+        "models": []
       }
     }
   },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai-codex/gpt-5.3-codex",
-        "fallbacks": []
+        "primary": "openai-codex/gpt-5.3-codex"
+      },
+      "models": {
+        "openai-codex/gpt-5.3-codex": {}
       },
       "workspace": "~/.openclaw/workspace/default",
+      "userTimezone": "Asia/Jakarta",
+      "contextTokens": 50000,
       "memorySearch": {
         "enabled": false
       },
-      "userTimezone": "Asia/Jakarta",
-      "contextTokens": 50000,
       "compaction": {
         "mode": "default"
       },
@@ -164,10 +151,11 @@
   "channels": {
     "whatsapp": {
       "enabled": true,
-      "dmPolicy": "open",
-      "allowFrom": ["*"],
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "+6289669848875"
+      ],
       "groupPolicy": "open",
-      "allowFrom": ["*"],
       "groups": {
         "120363426675038040@g.us": {
           "requireMention": false
@@ -176,9 +164,9 @@
       "debounceMs": 0,
       "accounts": {
         "doloris": {
-          "dmPolicy": "open",
+          "dmPolicy": "allowlist",
           "allowFrom": [
-            "*"
+            "+6289669848875"
           ],
           "groupPolicy": "open",
           "textChunkLimit": 3500,
@@ -193,9 +181,9 @@
           "mediaMaxMb": 50
         },
         "miku": {
-          "dmPolicy": "open",
+          "dmPolicy": "allowlist",
           "allowFrom": [
-            "*"
+            "+6289669848875"
           ],
           "groupPolicy": "open",
           "textChunkLimit": 3500,
@@ -225,10 +213,6 @@
     "auth": {
       "mode": "token",
       "token": "6932eced1ef2f3d0fa2bad589ba4052e1b2ab4a0d8e4b137"
-    },
-    "tailscale": {
-      "mode": "off",
-      "resetOnExit": false
     }
   },
   "plugins": {
