@@ -29,7 +29,7 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
    - `channels.whatsapp.groups["<jid>"]: { requireMention: false }`
    - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]: { requireMention: false }`
 4. Save file with proper JSON formatting
-5. Config auto-reloads (~300ms), no restart needed
+5. Restart gateway — run `openclaw gateway restart`
 6. **VERIFY** by reading config back and confirming entry exists
 7. Report success with group JID shown
 
