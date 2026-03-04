@@ -33,7 +33,13 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
    - `channels.whatsapp.groups["<jid>"]`
    - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
 4. **Tool call:** read config back to verify the entry exists
-5. **Send message first** — report JID added, warn that gateway is about to restart
+5. **Send message first** — report result including the full JID, so owner can verify in `openclaw.json`. Example format:
+   ```
+   /open-group aktif untuk grup ini 🌙
+   JID: 120363426675038040@g.us
+   requireMention: false sudah diset di channels.whatsapp.groups + accounts.doloris.groups
+   gateway restart sekarang...
+   ```
 6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent (connection drops after restart)
 
 **WhatsApp JID format:** `120363426675038040@g.us`
@@ -55,7 +61,13 @@ Restore a group to mention-only mode (default behavior).
    - `channels.whatsapp.groups["<jid>"]`
    - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
 4. **Tool call:** read config back to verify
-5. **Send message first** — report result, warn that gateway is about to restart
+5. **Send message first** — report result including the full JID, so owner can verify in `openclaw.json`. Example format:
+   ```
+   /close-group aktif untuk grup ini 🌙
+   JID: 120363426675038040@g.us
+   requireMention: true sudah diset di channels.whatsapp.groups + accounts.doloris.groups
+   gateway restart sekarang...
+   ```
 6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent
 
 **IMPORTANT:** Only update this agent's account entry, same rule as `/open-group`.

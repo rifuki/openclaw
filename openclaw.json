@@ -179,6 +179,9 @@
             "*": {},
             "120363407344095162@g.us": {
               "requireMention": false
+            },
+            "120363423885927820@g.us": {
+              "requireMention": false
             }
           },
           "textChunkLimit": 3500,
