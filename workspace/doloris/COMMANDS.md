@@ -4,6 +4,30 @@ Owner-only commands. Only Rifuki (+6289669848875) can trigger these.
 
 ---
 
+## `/open-all-groups`
+
+**Remove group whitelist entirely — bot responds in ALL groups without mention.**
+
+**How it works:**
+1. Read `openclaw.json`
+2. Remove `channels.whatsapp.groups` section (if exists)
+3. Remove `channels.whatsapp.accounts.doloris.groups` (if exists)
+4. Remove `channels.whatsapp.accounts.miku.groups` (if exists)
+5. Set `channels.whatsapp.requireMention: false`
+6. Set `channels.whatsapp.accounts.doloris.requireMention: false`
+7. Set `channels.whatsapp.accounts.miku.requireMention: false`
+8. Save — config auto-reloads, no restart needed
+9. Verify by reading config back
+
+**Result:** Bot joins and responds in ANY group it's invited to.
+
+**Example:**
+```
+/open-all-groups
+```
+
+---
+
 ## `/open-group <jid>`
 
 Disable `requireMention` for a specific group — Doloris responds to all messages without needing an @mention.
