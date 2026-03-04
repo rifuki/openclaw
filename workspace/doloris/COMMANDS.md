@@ -27,8 +27,7 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
 2. Read `openclaw.json`
 3. Add entry to BOTH:
    - `channels.whatsapp.groups["<jid>"]: { requireMention: false }`
-   - `channels.whatsapp.accounts.doloris.groups["<jid>"]: { requireMention: false }`
-   - `channels.whatsapp.accounts.miku.groups["<jid>"]: { requireMention: false }`
+   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]: { requireMention: false }`
 4. Save file with proper JSON formatting
 5. Config auto-reloads (~300ms), no restart needed
 6. **VERIFY** by reading config back and confirming entry exists
@@ -38,20 +37,25 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
 
 **Finding the JID manually:** Check message metadata or gateway logs
 
-**IMPORTANT:** Must add to ALL THREE locations for bot to work in that group without mention.
+**IMPORTANT:** Only update this agent's account entry, not other agents (e.g. if Doloris runs this, only update `accounts.doloris` — leave `accounts.miku` untouched).
 
 ---
 
-## `/close-group <jid>`
+## `/close-group [jid]`
 
 Restore a group to mention-only mode (default behavior).
 
 **How it works:**
-1. Read `openclaw.json`
-2. Set `channels.whatsapp.groups["<jid>"]: { requireMention: true }` or remove the entry entirely
-3. Save
+1. Detect group JID (from context or parameter)
+2. Read `openclaw.json`
+3. Remove or set `requireMention: true` on BOTH:
+   - `channels.whatsapp.groups["<jid>"]`
+   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
+4. Save
 
-**Note on mention-only mode:** When `requireMention: true`, Doloris responds to both @mentions AND replies to her own messages. Replying to a Doloris message counts as an implicit mention — no explicit `@Doloris` needed.
+**IMPORTANT:** Only update this agent's account entry, same rule as `/open-group`.
+
+**Note on mention-only mode:** When `requireMention: true`, bot responds to both @mentions AND replies to its own messages.
 
 ---
 
