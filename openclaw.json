@@ -155,11 +155,43 @@
       "allowFrom": [
         "+6289669848875"
       ],
+      "groupPolicy": "open",
+      "groupAllowFrom": [
+        "*"
+      ],
+      "groups": {
+        "120363426675038040@g.us": {
+          "requireMention": false
+        },
+        "120363425848948418@g.us": {
+          "requireMention": false
+        },
+        "120363423056989251@g.us": {
+          "requireMention": false
+        }
+      },
+      "debounceMs": 0,
+      "accounts": {
+        "doloris": {
+          "dmPolicy": "allowlist",
+          "allowFrom": [
+            "+6289669848875"
+          ],
           "groupPolicy": "open",
           "groupAllowFrom": [
             "*"
           ],
-          "requireMention": false,
+          "groups": {
+            "120363426675038040@g.us": {
+              "requireMention": false
+            },
+            "120363425848948418@g.us": {
+              "requireMention": false
+            },
+            "120363423056989251@g.us": {
+              "requireMention": false
+            }
+          },
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {
@@ -180,7 +212,17 @@
           "groupAllowFrom": [
             "*"
           ],
-          "requireMention": false,
+          "groups": {
+            "120363426675038040@g.us": {
+              "requireMention": false
+            },
+            "120363425848948418@g.us": {
+              "requireMention": false
+            },
+            "120363423056989251@g.us": {
+              "requireMention": false
+            }
+          },
           "textChunkLimit": 3500,
           "chunkMode": "length",
           "ackReaction": {
