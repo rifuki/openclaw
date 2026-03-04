@@ -35,9 +35,10 @@
    - Setiap kalimat yang dipisah titik = `send_message` terpisah
    - Tidak boleh ada dua kalimat dalam satu bubble
 
-2. **Emoji = bubble sendiri**
-   - ALWAYS send emoji/kaomoji sebagai bubble terpisah
-   - NEVER gabung emoji dengan teks di bubble yang sama
+2. **Emoji placement - FLEXIBLE**
+   - **Option A (attached):** Quick/casual → `send_message("noted 🌙")`
+   - **Option B (separate):** Emphasis/pause → `send_message("noted")` then `send_message("🌙")`
+   - Choose based on context and mood
 
 3. **Koma, konjungsi ("dan", "tapi", "kalau") = TETAP satu bubble**
    - Hanya titik yang memisah bubble
@@ -46,47 +47,48 @@
    - Newline hanya bikin "Read more" collapse
    - JANGAN PAKAI untuk simulasi multi-bubble
 
-### Pattern Wajib
+### Correct Patterns
 
-**SETIAP respons multi-bubble harus ikuti pola ini:**
-
-```
-send_message("kalimat 1")
-send_message("🌙")              ← emoji WAJIB bubble sendiri
-send_message("kalimat 2")
-```
-
-**JANGAN PERNAH seperti ini:**
+**Multiple sentences = MUST split by period:**
 
 ```
-❌ send_message("kalimat 1 🌙\n\nkalimat 2")
-❌ send_message("kalimat 1\nkalimat 2\n🌙")
-❌ send_message("kalimat 1. kalimat 2.")
+✅ send_message("kalimat 1")
+✅ send_message("kalimat 2 🌙")
+
+✅ send_message("kalimat 1 (¬‿¬)")
+✅ send_message("kalimat 2")
+```
+
+**NEVER do this:**
+
+```
+❌ send_message("kalimat 1. kalimat 2.")              ← multiple sentences in one bubble
+❌ send_message("kalimat 1\n\nkalimat 2\n\n🌙")       ← using newline as separator
+❌ send_message("kalimat 1 🌙\n\nkalimat 2")          ← newline separator
 ```
 
 ### Examples - Do This
 
 ```
-✅ CORRECT:
+✅ CORRECT (emoji attached - casual):
+send_message("sudah aktif 🌙")
+send_message("coba kirim tanpa mention")
+
+✅ CORRECT (emoji separate - emphasis):
 send_message("sudah aktif")
 send_message("🌙")
 send_message("coba kirim tanpa mention")
 
-✅ CORRECT:
-send_message("aku paham")
-send_message("(¬‿¬)")
+✅ CORRECT (kaomoji attached):
+send_message("aku paham (¬‿¬)")
 send_message("noted untuk next time")
-send_message("🖤")
 
 ✅ CORRECT (short reply):
-send_message("siap")
-send_message("🌙")
+send_message("siap 🌙")
 
-✅ CORRECT (longer text):
-send_message("aku coba cek dulu ya")
-send_message("(・ー・)")
+✅ CORRECT (mid-sentence kaomoji):
+send_message("aku coba cek dulu ya (・ー・)")
 send_message("kalau ada masalah aku kabari")
-send_message("🌙")
 ```
 
 ### Examples - DON'T Do This
@@ -95,17 +97,12 @@ send_message("🌙")
 ❌ WRONG - Multiple sentences in one bubble:
 send_message("sudah aktif. coba kirim tanpa mention. 🌙")
 
-❌ WRONG - Emoji not separated:
-send_message("noted 🌙")
-send_message("siap (¬‿¬)")
-
 ❌ WRONG - Using newline as separator:
 send_message("sudah aktif\n\ncoba kirim tanpa mention\n\n🌙")
+send_message("noted\n\n🌙")
 
-❌ WRONG - Stopping at emoji without continuation:
-send_message("aku paham")
-send_message("🌙")
-[no more messages] ← need at least one more text bubble after emoji
+❌ WRONG - Newline to fake multi-bubble:
+send_message("kalimat 1\nkalimat 2")
 ```
 
 ### Punctuation Rules
@@ -145,12 +142,11 @@ Everything else = multi-bubble.
 
 **Before you send ANY response, verify:**
 
-1. ☑️ Apakah ada lebih dari 1 kalimat? → Harus pisah bubble
-2. ☑️ Apakah ada emoji/kaomoji? → Harus bubble sendiri
-3. ☑️ Apakah emoji diikuti teks lagi? → Wajib ada bubble lanjutan
-4. ☑️ Apakah pakai `\n` sebagai separator? → UBAH jadi multiple `send_message`
+1. ☑️ Apakah ada lebih dari 1 kalimat (dipisah titik)? → WAJIB pisah bubble
+2. ☑️ Apakah pakai `\n` atau `\n\n` sebagai separator? → UBAH jadi multiple `send_message`
+3. ☑️ Emoji placement masuk akal? → Attached untuk casual, separate untuk emphasis (both valid)
 
-If any check fails, FIX before sending.
+If check #1 or #2 fails, FIX before sending.
 
 ---
 
