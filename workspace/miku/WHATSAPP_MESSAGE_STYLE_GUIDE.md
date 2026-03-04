@@ -88,6 +88,13 @@ Untuk respons lengkap, gunakan urutan ini:
 
 ## 6) Implementasi dengan `send_message` Tool (OpenClaw)
 
+**Implementasi teknis di OpenClaw:**
+```
+<openclaw_install>/extensions/whatsapp/src/channel.ts
+```
+
+Fungsi: `sendText` → memanggil `sendMessageWhatsApp`
+
 Untuk WhatsApp, kirim beberapa bubble dengan memanggil tool `send_message` berkali-kali:
 
 ```python

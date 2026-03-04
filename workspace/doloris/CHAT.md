@@ -150,6 +150,13 @@ Ini berlaku di semua konteks: task selesai, error report, casual chat, apapun.
 
 **Tool yang digunakan:** `send_message` — ini tool dari OpenClaw untuk kirim pesan WhatsApp.
 
+**Implementasi teknis (OpenClaw source):**
+```
+<openclaw_install>/extensions/whatsapp/src/channel.ts
+```
+
+Fungsi: `sendMessageWhatsApp` — dipanggil oleh tool `send_message` untuk mengirim ke WhatsApp.
+
 **Multi-bubble = multiple `send_message` calls:**
 ```
 // SALAH (satu bubble):

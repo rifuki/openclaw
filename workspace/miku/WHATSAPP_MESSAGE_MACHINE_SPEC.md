@@ -130,6 +130,11 @@ Anti-monotony constraints:
 
 Emit one `send_message` tool call per bubble. Tool ini dari OpenClaw untuk kirim pesan WhatsApp.
 
+**OpenClaw WhatsApp Implementation:**
+- File: `<openclaw_install>/extensions/whatsapp/src/channel.ts`
+- Fungsi: `sendText({ to, text, ... })` → `sendMessageWhatsApp(to, text, options)`
+- Setiap `send_message` tool call = satu panggilan ke `sendMessageWhatsApp` = satu bubble WhatsApp
+
 Rule M1: First bubble must include reply tag if context exists.
 ```text
 if has_reply_context == true => prepend "[[reply_to_current]] " only on first bubble
