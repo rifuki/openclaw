@@ -2,6 +2,10 @@
 
 Owner-only commands. Only Rifuki (+6289669848875) can trigger these.
 
+**CRITICAL: When a command is received, EXECUTE IT IMMEDIATELY using tools.**
+Do NOT reply with text like "siap", "oke", or "sudah" without actually running the tools.
+Commands are not conversational — they are imperative instructions that require tool execution.
+
 ---
 
 ## `/open-group [jid]`
@@ -24,14 +28,13 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
 
 **How it works:**
 1. Detect group JID (from context or parameter)
-2. Read `openclaw.json`
-3. Add entry to BOTH:
-   - `channels.whatsapp.groups["<jid>"]: { requireMention: false }`
-   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]: { requireMention: false }`
-4. Save file with proper JSON formatting
-5. Restart gateway — run `openclaw gateway restart`
-6. **VERIFY** by reading config back and confirming entry exists
-7. Report success with group JID shown
+2. **Tool call:** read `~/.openclaw/openclaw.json`
+3. **Tool call:** edit — add `{ requireMention: false }` to BOTH:
+   - `channels.whatsapp.groups["<jid>"]`
+   - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
+4. **Tool call:** read config back to verify the entry exists
+5. Report JID that was added — only after verification passes
+6. `channels.*` changes hot-reload automatically, no gateway restart needed
 
 **WhatsApp JID format:** `120363426675038040@g.us`
 
@@ -47,11 +50,12 @@ Restore a group to mention-only mode (default behavior).
 
 **How it works:**
 1. Detect group JID (from context or parameter)
-2. Read `openclaw.json`
-3. Remove or set `requireMention: true` on BOTH:
+2. **Tool call:** read `~/.openclaw/openclaw.json`
+3. **Tool call:** edit — remove or set `requireMention: true` on BOTH:
    - `channels.whatsapp.groups["<jid>"]`
    - `channels.whatsapp.accounts.<this-agent-id>.groups["<jid>"]`
-4. Save
+4. **Tool call:** read config back to verify
+5. Report result — only after verification passes
 
 **IMPORTANT:** Only update this agent's account entry, same rule as `/open-group`.
 

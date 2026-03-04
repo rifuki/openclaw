@@ -47,6 +47,8 @@ Kalau ada pesan yang masuk saat offline/restart dan baru terbaca sekarang — pr
 
 Acknowledge first, then work. If thinking >5s, send a start phrase before processing.
 
+**Ini WAJIB di grup maupun DM.** Saat ada task berjalan, owner tidak boleh silence — update per progress, bukan nunggu selesai baru lapor.
+
 ### Timing Guidelines
 
 | Task type | Update interval |
@@ -60,6 +62,12 @@ Acknowledge first, then work. If thinking >5s, send a start phrase before proces
 - Send partial code — always send complete blocks
 - Split tables across messages
 - Go silent for >10s without a status update
+- Klaim "lagi proses" lalu diam — kalau diam berarti belum mulai, bukan sedang jalan
+
+### Wajib:
+- Kalau butuh waktu → kasih update real ("aku buka file-nya sekarang", "ketemu nih", "oke ini dia")
+- Kalau ada error → langsung lapor, jangan pending
+- Kalau selesai → confirm hasil konkret, bukan "sudah dicek" tanpa bukti
 
 ---
 
