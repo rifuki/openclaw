@@ -75,7 +75,7 @@
         "maxConcurrent": 8,
         "maxSpawnDepth": 2,
         "maxChildrenPerAgent": 5
-      }
+      },
       "heartbeat": {
         "every": "30m",
         "activeHours": {
@@ -85,32 +85,14 @@
         },
         "target": "whatsapp",
         "to": "+6289669848875"
-      },
-    },
-    "list": [
-      {
-        "id": "main",
-        "default": true,
-        "name": "doloris",
-        "workspace": "/home/rifuki/.openclaw/workspace",
-        "agentDir": "/home/rifuki/.openclaw/agents/main/agent",
-        "model": "kimi-coding/k2p5",
-        "identity": {
-          "name": "Doloris",
-          "emoji": "🌙"
-        },
-        "groupChat": {
-          "mentionPatterns": [
-            "[Dd]oloris",
-            "[Hh]atsune",
-            "[Uu]ika"
-          ]
-        }
       }
-    ]
+    }
   },
   "tools": {
     "web": {
+      "search": {
+        "enabled": true
+      },
       "fetch": {
         "enabled": true
       }
@@ -119,15 +101,6 @@
       "enabled": false
     }
   },
-  "bindings": [
-    {
-      "agentId": "main",
-      "match": {
-        "channel": "whatsapp",
-        "accountId": "doloris"
-      }
-    }
-  ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
@@ -141,86 +114,25 @@
   "channels": {
     "whatsapp": {
       "enabled": true,
-      "dmPolicy": "open",
       "selfChatMode": false,
+      "dmPolicy": "allowlist",
       "allowFrom": [
-        "*",
         "+6289669848875"
       ],
+      "groupPolicy": "open",
       "groupAllowFrom": [
         "*"
       ],
-      "groupPolicy": "open",
       "groups": {
         "*": {}
       },
       "debounceMs": 0,
-      "accounts": {
-        "doloris": {
-          "enabled": true,
-          "dmPolicy": "allowlist",
-          "allowFrom": [
-            "+6289669848875"
-          ],
-          "groupAllowFrom": [
-            "*"
-          ],
-          "groupPolicy": "open",
-          "textChunkLimit": 3500,
-          "chunkMode": "length",
-          "groups": {
-            "*": {},
-          },
-          "ackReaction": {
-            "emoji": "🌙",
-            "direct": false,
-            "group": "never"
-          },
-          "debounceMs": 0,
-          "name": "doloris",
-          "mediaMaxMb": 50
-        },
-        "default": {
-          "enabled": true,
-          "dmPolicy": "allowlist",
-          "allowFrom": [
-            "+6289669848875"
-          ],
-          "groupAllowFrom": [
-            "*"
-          ],
-          "groupPolicy": "open",
-          "textChunkLimit": 3500,
-          "chunkMode": "length",
-          "groups": {
-            "*": {},
-            "120363409050928326@g.us": {
-              "requireMention": false
-            },
-            "120363405893049543@g.us": {
-              "requireMention": false
-            },
-            "120363405899416308@g.us": {
-              "requireMention": false
-            },
-            "120363424351851411@g.us": {
-              "requireMention": false
-            },
-            "120363425638637717@g.us": {
-              "requireMention": false
-            }
-          },
-          "ackReaction": {
-            "emoji": "🌙",
-            "direct": false,
-            "group": "never"
-          },
-          "debounceMs": 0,
-          "name": "doloris",
-          "mediaMaxMb": 50
-        }
+      "mediaMaxMb": 50,
+      "ackReaction": {
+        "emoji": "🌙",
+        "direct": false,
+        "group": "never"
       },
-      "mediaMaxMb": 50
     }
   },
   "gateway": {
