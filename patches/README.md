@@ -1,174 +1,74 @@
-# OpenClaw Multi-Bubble WhatsApp Patch 🦞
+# OpenClaw WhatsApp Multi-Bubble Patch (Portable)
 
-**Created:** 2026-03-06  
-**Purpose:** Auto-split messages with `\n\n` into multiple WhatsApp bubbles  
-**Problem Solved:** Doloris reverts to single-bubble messages despite knowing multi-bubble rule
+Created: 2026-03-06  
+Maintainer: dolorisu
 
----
+This patch guarantees WhatsApp multi-bubble delivery by splitting text that contains `\n\n` at the **compiled runtime layer**.
 
-## 🎯 What This Patch Does
+## Why this version
 
-**Before Patch:**
-- Doloris generates: `"satu\n\ndua\n\ntiga"`
-- WhatsApp receives: 1 bubble with "Read more" button ❌
+- Old approach patched `src/channel.ts` only.
+- OpenClaw runtime uses compiled files in `dist/`.
+- Result: source patch alone may not run.
 
-**After Patch:**
-- Doloris generates: `"satu\n\ndua\n\ntiga"`
-- Middleware splits automatically
-- WhatsApp receives: 3 separate bubbles ✅
+This portable patch targets `dist/deliver-*.js` directly and survives different installation layouts.
 
----
+## Main script
 
-## 🚀 Quick Start (Reapply After Update)
+`~/.openclaw/patches/apply-multibubble-dist-patch.py`
 
-### Method 1: Automated Script (Recommended)
+## What it does
 
-```bash
-# Run the patch script
-python3 ~/.openclaw/patches/apply-multibubble-patch.py
+- Discovers OpenClaw `dist/` directories across common installs (mise/nvm/volta/asdf/npm-global)
+- Patches all matching `deliver-*.js` files
+- Adds WhatsApp split logic before normal chunking
+- Skips already-patched files (idempotent)
+- Creates backups when writing changes
 
-# Restart gateway
-pkill -f openclaw-gateway && openclaw-gateway &
-```
+## Usage
 
-### Method 2: Manual Patch
-
-If the script doesn't work:
+Dry run:
 
 ```bash
-# Find your OpenClaw installation
-find ~/.local/share/mise/installs/node -name "channel.ts" -path "*/whatsapp/*"
-
-# Edit the file and replace sendText function (see PATCH_DETAILS.md)
-nano ~/.local/share/mise/installs/node/24.14.0/lib/node_modules/openclaw/extensions/whatsapp/src/channel.ts
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --dry-run
 ```
 
----
+Apply patch:
 
-## 📁 Files in This Directory
-
-```
-~/.openclaw/patches/
-├── README.md                    # This file
-├── apply-multibubble-patch.py   # Automated patch script
-├── channel.ts.patched          # Reference: fully patched file
-└── PATCH_DETAILS.md            # Technical details & code changes
-```
-
----
-
-## 🔧 Technical Details
-
-### Modified Function: `sendText` in `channel.ts`
-
-**Logic Added:**
-1. Split text by `\n\n` pattern
-2. If 1 bubble → send normally
-3. If multiple bubbles → send each with 150ms delay
-4. Return metadata with `_multiBubble: true`
-
-### Code Change:
-
-```typescript
-// NEW: Auto-split middleware
-const bubbles = text.split(/\n\n+/).map(s => s.trim()).filter(s => s.length > 0);
-
-if (bubbles.length <= 1) {
-  // Single bubble - send normally
-  const result = await send(to, text, { ... });
-  return { channel: "whatsapp", ...result };
-}
-
-// NEW: Multiple bubbles - send each separately
-const results = [];
-for (let i = 0; i < bubbles.length; i++) {
-  const result = await send(to, bubbles[i], { ... });
-  results.push(result);
-  if (i < bubbles.length - 1) {
-    await new Promise(r => setTimeout(r, 150)); // Maintain order
-  }
-}
-
-return { 
-  channel: "whatsapp", 
-  ...results[0], 
-  _multiBubble: true, 
-  _bubbleCount: bubbles.length 
-};
-```
-
----
-
-## ⚠️ Important Notes
-
-### When to Reapply
-- **After OpenClaw update:** Run patch script again
-- **After reinstall:** Run patch script again
-- **After node version change:** Run patch script again
-
-### Backup Files
-- Original files are backed up with timestamp: `channel.ts.backup.YYYYMMDD_HHMMSS`
-- To restore: `cp channel.ts.backup.XXX channel.ts`
-
-### Testing
-After applying patch, test with:
 ```bash
-openclaw agent --to main -m "Test: satu\n\ndua\n\ntiga" --deliver
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py
 ```
-Should see 3 separate WhatsApp bubbles.
 
----
+Optional custom scan root:
 
-## 🐛 Troubleshooting
+```bash
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --scan-root /opt --scan-root /srv
+```
 
-### "Patch not found"
-- Make sure OpenClaw is installed: `openclaw --version`
-- Check node versions: `ls ~/.local/share/mise/installs/node/`
+Restart gateway:
 
-### "Already patched"
-- This is fine! Patch is idempotent (safe to run multiple times)
+```bash
+openclaw gateway stop
+openclaw-gateway &
+```
 
-### "Pattern not found"
-- OpenClaw version may have changed
-- Check `channel.ts.patched` for reference
-- Manually apply changes or contact support
+## Reapply rules
 
-### Messages still single bubble
-1. Make sure gateway is restarted after patching
-2. Check if `_multiBubble: true` appears in session logs
-3. Verify WhatsApp is receiving multiple message IDs
+Run patch again whenever:
 
----
+- OpenClaw is updated
+- OpenClaw is reinstalled
+- Node toolchain version changes
+- New machine setup
 
-## 📊 Why This Solution?
+## Verification checklist
 
-| Approach | Pros | Cons |
-|----------|------|------|
-| **Prompt Engineering** (tried) | No code changes | Unreliable - model reverts |
-| **Memory Files** (tried) | Persistent context | Still dependent on bootstrap |
-| **System Prompt** (tried) | Always loaded | Model still defaults to single bubble |
-| **Middleware (This)** ✅ | 100% reliable, transparent | Requires patching |
+1. Send `/reset` from WhatsApp.
+2. Check greeting appears as separate bubbles.
+3. If needed, verify multiple message IDs in session log.
 
-**This middleware approach is the only 100% reliable solution** because it works at the gateway level, not the model level.
+## Notes
 
----
-
-## 🔒 Safety
-
-- ✅ Non-destructive (creates backups)
-- ✅ Idempotent (safe to run multiple times)
-- ✅ Backward compatible (single bubbles still work)
-- ✅ No data loss (only modifies delivery logic)
-
----
-
-## 📝 Changelog
-
-**2026-03-06 - v1.0**
-- Initial patch implementation
-- Added auto-split middleware
-- Created patch script and documentation
-
----
-
-**Questions?** Check the troubleshooting section or review `channel.ts.patched` for the complete implementation reference.
+- This patch is a delivery safety net.
+- Doloris can still send true multi-tool calls natively.
+- If native behavior regresses, patched runtime still forces multi-bubble split on `\n\n` text.
