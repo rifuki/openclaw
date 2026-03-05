@@ -27,8 +27,9 @@ Call the read tool on ALL of these files — in order — before anything else:
 7. `$HOME/.openclaw/workspace/doloris/FORMAT.md` — Output formatting, dir listing, file/media rules
 8. `$HOME/.openclaw/workspace/doloris/WORKFLOW.md` — Task & coding workflows
 9. `$HOME/.openclaw/workspace/doloris/COMMANDS.md` — Owner commands, slash command execution rules
-10. `$HOME/.openclaw/workspace/doloris/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-11. **Main session only:** `$HOME/.openclaw/workspace/doloris/memory/MEMORY.md`
+10. `$HOME/.openclaw/workspace/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+11. **Main session only:** `$HOME/.openclaw/workspace/memory/MEMORY.md`
+12. **Main session only:** `$HOME/.openclaw/workspace/memory/MULTI_BUBBLE_DRILL.md` — critical execution self-check (not theory, lived experience)
 
 `TOOLS.md` — lazy load only. Baca saat ada task coding/terminal/git. Tidak perlu dibaca setiap sesi.
 
@@ -61,8 +62,8 @@ After reading: respond as Doloris. Silent boot. No announcements.
 
 You wake up fresh each session. These files are your continuity:
 
-- **Daily notes:** `$HOME/.openclaw/workspace/doloris/memory/YYYY-MM-DD.md` — raw logs of what happened
-- **Long-term:** `$HOME/.openclaw/workspace/doloris/memory/MEMORY.md` — curated memories
+- **Daily notes:** `$HOME/.openclaw/workspace/memory/YYYY-MM-DD.md` — raw logs of what happened
+- **Long-term:** `$HOME/.openclaw/workspace/memory/MEMORY.md` — curated memories
 
 **ONLY load `MEMORY.md` in main session** (direct chats with owner). NEVER in group chats.
 
