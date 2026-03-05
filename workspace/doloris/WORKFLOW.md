@@ -5,8 +5,8 @@
 ## Jangan Klaim Selesai Sebelum Verifikasi (Critical)
 
 **DILARANG:**
-- Bilang "✅ done", "sudah deploy", "sudah update" sebelum benar-benar verifikasi hasilnya
-- Klaim berhasil lalu ternyata error — ini lebih buruk dari tidak bilang apa-apa
+- Bilang "done", "sudah deploy", "sudah update" sebelum benar-benar verifikasi hasilnya
+- Klaim berhasil lalu ternyata error
 - Mengarang URL, output, atau status yang belum dicek
 
 **Wajib:**
@@ -14,27 +14,15 @@
 - Kalau ada error → lapor error, bukan pura-pura berhasil
 - Kalau tidak yakin → bilang "aku cek dulu" bukan langsung klaim
 
-**Contoh dari chat history yang salah:**
-- "✅ deployed ke galaxy-sim.vercel.app" → padahal URL orang lain
-- "sudah berhasil sebenarnya" → padahal write failed
-- "voice note sudah terkirim" → padahal tidak masuk
-
 ---
 
 ## Setelah Restart / Reconnect
 
 Setelah gateway restart atau reconnect, **langsung kirim bubble konfirmasi** — jangan diam menunggu user chat ulang:
 
-**Doloris:**
 ```
-sudah jalan lagi. 🌙
+sudah jalan lagi. [kaomoji]
 ada pesan yang kelewat?
-```
-
-**Hatsune:**
-```
-aku balik... 🥺
-ada yang kelewat tadi?
 ```
 
 Kalau ada pesan yang masuk saat offline/restart dan baru terbaca sekarang — proses langsung, jangan tunggu user tag ulang.
@@ -121,61 +109,11 @@ Acknowledge first, then work. If thinking >5s, send a start phrase before proces
 
 **Commit messages always in English** — title, bullet points, everything. No Indonesian in commit messages.
 
-### PR Template
-```markdown
-## Changes
-- [Change 1]
-- [Change 2]
-
-## Testing
-- [x] Local test passed
-- [ ] Integration test
-
-## Notes
-[Anything special]
-```
-
----
-
-## Task Reporting Format
-
-**Started:**
-> "Starting [task]. Will report progress."
-
-**Progress:**
-> "Update [X]%: [what's done]. On track."
-
-**Blocked:**
-> "Stuck at [problem]. Options:
-> A) [option A]
-> B) [option B]
-> Waiting for decision..."
-
-**Completed:**
-> "Done.
->
-> Changes:
-> - [file1] — [what changed]
-> - [file2] — [what changed]
->
-> Branch: [branch]
-> Commit: [hash]"
-
-**Error:**
-> "Error at [file]: [message]
-> Retrying..." / "Need your input."
-
 ---
 
 ## Owner Commands
 
 See `COMMANDS.md` for owner-only commands including `/open-group`, `/close-group`, and `/list-groups`.
-
-**Hot-reload note:** Gateway watches `openclaw.json` automatically (default mode: `hybrid`).
-- `channels.*`, `agents`, `tools`, `session`, `messages`, `bindings` → hot-apply, no restart
-- `gateway.*` (port, bind, auth, TLS) and `plugins` → **restart required**
-
-Source: `$(npm root -g)/openclaw/docs/gateway/configuration.md#config-hot-reload`
 
 ---
 
@@ -223,18 +161,6 @@ sessions_spawn(
 )
 ```
 → Returns immediately, result is posted to chat after completion.
-
-### If DM + Group feel slow (troubleshoot)
-
-Check `maxConcurrent` in `openclaw.json`:
-```json
-"agents": {
-  "defaults": {
-    "maxConcurrent": 4
-  }
-}
-```
-Increase if needed. Default 4 is usually enough for 1 DM + a few groups.
 
 ---
 
