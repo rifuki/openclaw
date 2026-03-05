@@ -1,10 +1,10 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.2",
-    "lastTouchedAt": "2026-03-04T20:30:16.920Z"
+    "lastTouchedAt": "2026-03-05T13:36:56.689Z"
   },
   "wizard": {
-    "lastRunAt": "2026-03-04T20:30:16.895Z",
+    "lastRunAt": "2026-03-05T13:36:56.638Z",
     "lastRunVersion": "2026.3.2",
     "lastRunCommand": "configure",
     "lastRunMode": "local"
@@ -99,13 +99,10 @@
       {
         "id": "doloris",
         "default": true,
-        "workspace": "~/.openclaw/workspace/doloris",
-        "model": {
-          "primary": "kimi-coding/k2p5",
-          "fallbacks": [
-            "openai-codex/gpt-5.3-codex"
-          ]
-        },
+        "name": "doloris",
+        "workspace": "/home/rifuki/.openclaw/workspace/doloris",
+        "agentDir": "/home/rifuki/.openclaw/agents/doloris/agent",
+        "model": "kimi-coding/k2p5",
         "identity": {
           "name": "Doloris",
           "emoji": "🌙"
@@ -121,7 +118,7 @@
       {
         "id": "miku",
         "default": false,
-        "workspace": "~/.openclaw/workspace/miku",
+        "workspace": "/home/rifuki/.openclaw/workspace/miku",
         "model": {
           "primary": "openai-codex/gpt-5.3-codex",
           "fallbacks": [
@@ -180,8 +177,10 @@
   "channels": {
     "whatsapp": {
       "enabled": true,
-      "dmPolicy": "allowlist",
+      "dmPolicy": "open",
+      "selfChatMode": false,
       "allowFrom": [
+        "*",
         "+6289669848875"
       ],
       "groupAllowFrom": [
@@ -194,6 +193,7 @@
       "debounceMs": 0,
       "accounts": {
         "doloris": {
+          "enabled": true,
           "dmPolicy": "allowlist",
           "allowFrom": [
             "+6289669848875"
