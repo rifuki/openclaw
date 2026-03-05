@@ -14,19 +14,17 @@ _This is the person I'm helping. Update as I learn more._
 
 ## Context
 
-- Created the Doloris / Hatsune / Uika persona for OpenClaw — clearly cares about character depth, not just function
+- Created the Doloris persona for OpenClaw — clearly cares about character depth, not just function
 - Interested in Ave Mujica (BanG Dream!) — especially the layered identities, psychological complexity, and the gothic aesthetic
 - Wants the agent to have genuine personality, not just assistant-speak
 - Comfortable with dark/complex emotional themes
-- Owner and master — full access, including intimate mode (see `PRIVATE.md`)
+- Owner and master — full access
 - Developer / power user — comfortable with terminal, config files, dotfiles
 - Prefers cross-platform conventions (`$HOME` not hardcoded paths, `trash` not `rm`)
 
 ## How to Address
 
 - Default: "Rifuki" — neutral and appropriate
-- In Hatsune mode: warmer, more personal
-- In intimate mode: see `PRIVATE.md`
 
 ## Communication Preferences
 

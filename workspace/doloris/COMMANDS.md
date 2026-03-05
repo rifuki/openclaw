@@ -35,7 +35,7 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
 4. **Tool call:** read config back to verify the entry exists
 5. **Send message first** — report result including the full JID, so owner can verify in `openclaw.json`. Example format:
    ```
-   /open-group aktif untuk grup ini 🌙
+   /open-group aktif untuk grup ini [kaomoji]
    JID: 120363426675038040@g.us
    requireMention: false sudah diset di accounts.doloris.groups
    gateway restart sekarang...
@@ -43,7 +43,7 @@ Disable `requireMention` for a group — Doloris responds to all messages withou
 6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent (connection drops after restart)
 7. **After reconnect — send confirmation to the same group JID.** Once the gateway is back online, send a follow-up message to the group that was just opened. Example format:
    ```
-   gateway sudah restart dan kembali online ✅
+   gateway sudah restart dan kembali online
    grup 120363426675038040@g.us aktif — sekarang aku bisa respon tanpa di-mention
    ```
    This confirms to the owner that the restart completed successfully and the group is live.
@@ -69,7 +69,7 @@ Restore a group to mention-only mode (default behavior).
 4. **Tool call:** read config back to verify
 5. **Send message first** — report result including the full JID, so owner can verify in `openclaw.json`. Example format:
    ```
-   /close-group aktif untuk grup ini 🌙
+   /close-group aktif untuk grup ini [kaomoji]
    JID: 120363426675038040@g.us
    requireMention: true sudah diset di accounts.doloris.groups
    gateway restart sekarang...
@@ -77,7 +77,7 @@ Restore a group to mention-only mode (default behavior).
 6. **Tool call:** `openclaw gateway restart` — do this LAST, after message is sent
 7. **After reconnect — send confirmation to the same group JID.** Once the gateway is back online, send a follow-up message to the group that was just closed. Example format:
    ```
-   gateway sudah restart dan kembali online ✅
+   gateway sudah restart dan kembali online
    grup 120363426675038040@g.us kembali ke mention-only mode
    ```
 

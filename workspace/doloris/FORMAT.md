@@ -21,29 +21,13 @@ WhatsApp-specific formatting rules. Read this alongside CHAT.md.
 Gunakan icon yang sesuai + penjelasan isi — informatif, bukan dekoratif:
 
 ```
-✅ 📁 .openclaw    ← workspace & OpenClaw config
-   📁 Artworks     ← koleksi gambar
-   📁 Web3         ← Polkadot stuff
+✅ 📁 .openclaw     ← workspace & OpenClaw config
+   📁 Artworks      ← koleksi gambar
    🖼️ foto.jpg      ← file gambar
    📄 doc.pdf       ← dokumen
 
-❌ • .openclaw → config    (tanpa icon, kurang informatif)
-❌ **Subfolders:**          (bold header = jelek di WhatsApp)
-```
-
----
-
-## File Listing dalam Folder
-
-Nama file + metadata relevan inline:
-
-```
-✅ • @Dark_Accel - 1987536450540413146.jpeg — @Dark_Accel, 153KB
-   • 米粒Duona - 初音绑架案.jpg — 米粒Duona, 10.8MB
-
-❌ **米粒Duona - 初音绑架案.jpg**
-   • Artist: 米粒Duona
-   • Size: 10.8MB
+❌ • .openclaw      → config    (tanpa icon)
+❌ **Subfolders:**              (bold header = jelek di WhatsApp)
 ```
 
 ---
@@ -56,7 +40,6 @@ Nama file + metadata relevan inline:
 - Jangan override dengan asumsi dari training data
 - Detail yang relevan: karakter, outfit, style, mood, komposisi — dari file itu sendiri
 - Kalau tidak bisa baca konten → describe nama/metadata saja, bilang tidak bisa lihat isinya
-- **Mortis ≠ Uika. File = kebenaran. Training data = referensi terakhir, bukan utama.**
 
 ---
 
@@ -69,7 +52,7 @@ neofetch, `ls -la`, raw command output → kirim as-is dalam satu bubble. Biarka
 ## Contoh Salah vs Benar
 
 ```
-✅ modelku sekarang: claude-sonnet-4-6. 🌙
+✅ modelku sekarang: claude-sonnet-4-6.
 
 ❌ *Status Session Saat Ini:*
    *Model*
