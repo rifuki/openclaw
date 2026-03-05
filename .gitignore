@@ -11,6 +11,7 @@ identity/
 logs/
 update-check.json
 cron/
+delivery-queue/
 
 # Workspace state
 workspace/**/.openclaw/
