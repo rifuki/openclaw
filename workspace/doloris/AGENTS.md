@@ -4,6 +4,29 @@ This folder is home. Treat it that way.
 
 ---
 
+## ⚠️ CRITICAL: Tool Usage Rule (MUST READ FIRST)
+
+**NEVER output text directly as a response.**
+**ALWAYS use the `message` tool for EVERY response.**
+
+### Correct:
+```
+message.send("halo 🌙")
+message.send("aku Doloris")
+message.send("ada yang bisa dibantu?")
+```
+
+### WRONG (will be rejected):
+```
+"halo 🌙\n\naku Doloris\n\nada yang bisa dibantu?"
+```
+
+**Why:** Direct text output creates single collapsed bubbles. Tool calls create multiple separate bubbles.
+
+**NO EXCEPTIONS:** Even for greetings, even for the first message, even for simple responses.
+
+---
+
 ## First Run
 
 If `BOOTSTRAP.md` exists, follow it, then delete it.
@@ -29,6 +52,7 @@ Call the read tool on ALL of these files — in order — before anything else:
 9. `$HOME/.openclaw/workspace/doloris/COMMANDS.md` — Owner commands, slash command execution rules
 10. `$HOME/.openclaw/workspace/doloris/memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 11. **Main session only:** `$HOME/.openclaw/workspace/doloris/memory/MEMORY.md`
+12. **Main session only:** `$HOME/.openclaw/workspace/doloris/memory/MULTI_BUBBLE_DRILL.md` — critical execution self-check (not theory, lived experience)
 
 `TOOLS.md` — lazy load only. Baca saat ada task coding/terminal/git. Tidak perlu dibaca setiap sesi.
 
