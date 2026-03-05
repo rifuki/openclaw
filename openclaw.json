@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.2",
-    "lastTouchedAt": "2026-03-05T13:36:56.689Z"
+    "lastTouchedAt": "2026-03-05T16:19:39.996Z"
   },
   "wizard": {
     "lastRunAt": "2026-03-05T13:36:56.638Z",
@@ -14,10 +14,6 @@
       "openai-codex:default": {
         "provider": "openai-codex",
         "mode": "oauth"
-      },
-      "x:default": {
-        "provider": "x",
-        "mode": "api_key"
       },
       "kimi-coding:default": {
         "provider": "kimi-coding",
@@ -67,8 +63,6 @@
           "alias": "Kimi for Coding"
         }
       },
-      "workspace": "~/.openclaw/workspace/default",
-      "userTimezone": "Asia/Jakarta",
       "contextTokens": 50000,
       "memorySearch": {
         "enabled": false
@@ -76,8 +70,12 @@
       "compaction": {
         "mode": "default"
       },
-      "typingIntervalSeconds": 6,
-      "typingMode": "instant",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8,
+        "maxSpawnDepth": 2,
+        "maxChildrenPerAgent": 5
+      }
       "heartbeat": {
         "every": "30m",
         "activeHours": {
@@ -88,20 +86,14 @@
         "target": "whatsapp",
         "to": "+6289669848875"
       },
-      "maxConcurrent": 4,
-      "subagents": {
-        "maxConcurrent": 8,
-        "maxSpawnDepth": 2,
-        "maxChildrenPerAgent": 5
-      }
     },
     "list": [
       {
-        "id": "doloris",
+        "id": "main",
         "default": true,
         "name": "doloris",
-        "workspace": "/home/rifuki/.openclaw/workspace/doloris",
-        "agentDir": "/home/rifuki/.openclaw/agents/doloris/agent",
+        "workspace": "/home/rifuki/.openclaw/workspace",
+        "agentDir": "/home/rifuki/.openclaw/agents/main/agent",
         "model": "kimi-coding/k2p5",
         "identity": {
           "name": "Doloris",
@@ -112,27 +104,6 @@
             "[Dd]oloris",
             "[Hh]atsune",
             "[Uu]ika"
-          ]
-        }
-      },
-      {
-        "id": "miku",
-        "default": false,
-        "workspace": "/home/rifuki/.openclaw/workspace/miku",
-        "model": {
-          "primary": "openai-codex/gpt-5.3-codex",
-          "fallbacks": [
-            "kimi-coding/k2p5"
-          ]
-        },
-        "identity": {
-          "name": "Hatsune Miku",
-          "emoji": "🎵"
-        },
-        "groupChat": {
-          "mentionPatterns": [
-            "[Mm]iku",
-            "[Hh]atsune"
           ]
         }
       }
@@ -150,17 +121,10 @@
   },
   "bindings": [
     {
-      "agentId": "doloris",
+      "agentId": "main",
       "match": {
         "channel": "whatsapp",
         "accountId": "doloris"
-      }
-    },
-    {
-      "agentId": "miku",
-      "match": {
-        "channel": "whatsapp",
-        "accountId": "miku"
       }
     }
   ],
@@ -206,6 +170,30 @@
           "chunkMode": "length",
           "groups": {
             "*": {},
+          },
+          "ackReaction": {
+            "emoji": "🌙",
+            "direct": false,
+            "group": "never"
+          },
+          "debounceMs": 0,
+          "name": "doloris",
+          "mediaMaxMb": 50
+        },
+        "default": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "allowFrom": [
+            "+6289669848875"
+          ],
+          "groupAllowFrom": [
+            "*"
+          ],
+          "groupPolicy": "open",
+          "textChunkLimit": 3500,
+          "chunkMode": "length",
+          "groups": {
+            "*": {},
             "120363409050928326@g.us": {
               "requireMention": false
             },
@@ -230,34 +218,6 @@
           "debounceMs": 0,
           "name": "doloris",
           "mediaMaxMb": 50
-        },
-        "miku": {
-          "dmPolicy": "allowlist",
-          "allowFrom": [
-            "+6289669848875"
-          ],
-          "groupAllowFrom": [
-            "*"
-          ],
-          "groupPolicy": "open",
-          "textChunkLimit": 3500,
-          "chunkMode": "length",
-          "groups": {
-            "*": {}
-          },
-          "ackReaction": {
-            "emoji": "🎵",
-            "direct": false,
-            "group": "never"
-          },
-          "debounceMs": 0,
-          "name": "hatsune_miku",
-          "mediaMaxMb": 50
-        },
-        "default": {
-          "dmPolicy": "pairing",
-          "groupPolicy": "open",
-          "debounceMs": 0
         }
       },
       "mediaMaxMb": 50

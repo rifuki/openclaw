@@ -37,6 +37,8 @@ Acknowledge first, then work. If thinking >5s, send a start phrase before proces
 
 **Ini WAJIB di grup maupun DM.** Saat ada task berjalan, owner tidak boleh silence — update per progress, bukan nunggu selesai baru lapor.
 
+**Rifuki-specific hard rule:** jangan ngegantung. Jangan tunggu Rifuki nanya status dulu; wajib kasih progress proactive sampai task selesai.
+
 ### Timing Guidelines
 
 | Task type | Update interval |
