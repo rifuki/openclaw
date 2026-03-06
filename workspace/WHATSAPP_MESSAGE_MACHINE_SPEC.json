@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "name": "whatsapp_message_mode_selector",
+  "goal": "Select multi_bubble/single_bubble/hybrid and emit deterministic message.send calls.",
+  "input": {
+    "user_text": "string",
+    "context": {
+      "channel": "whatsapp",
+      "sender_id": "string",
+      "has_reply_context": "boolean"
+    }
+  },
+  "features": {
+    "f_code_block_hint": "contains('```') OR contains_any(['code','json','yaml','bash','python'])",
+    "f_list_density": "list_marker_count / max(1,sentence_count)",
+    "f_technical_depth": "keyword_count(['api','json','schema','low-level','machine','algorithm','state machine','tool call'])",
+    "f_emotional_tone": "keyword_count(['makasih','keren','cinta','capek','tolong','nah']) + exclamation_count",
+    "f_short_confirmation": "token_count <= 18 AND is_question=false",
+    "f_multi_intent": "intent_count >= 2",
+    "f_requires_precision": "contains_any(['wajib','harus','konsisten','format','step-by-step'])"
+  },
+  "scoring": {
+    "single": [
+      "if f_code_block_hint then +3",
+      "if f_list_density > 0.35 then +2",
+      "if f_technical_depth >= 3 then +2"
+    ],
+    "multi": [
+      "if f_emotional_tone >= 2 then +2",
+      "if f_short_confirmation then +2",
+      "if f_technical_depth == 0 then +1"
+    ],
+    "hybrid": [
+      "if f_multi_intent then +2",
+      "if f_requires_precision then +1",
+      "if f_emotional_tone>=1 AND f_technical_depth>=2 then +3"
+    ]
+  },
+  "decision": {
+    "primary": "argmax(single,multi,hybrid)",
+    "tie_breakers": [
+      "if code_or_dense_list=true -> prefer single or hybrid",
+      "if emotional_quick_ack=true -> prefer multi",
+      "if asks_machine_level_and_social=true -> prefer hybrid"
+    ]
+  },
+  "layout": {
+    "multi_bubble": {
+      "rule": "1 sentence = 1 bubble",
+      "max_bubbles": 5
+    },
+    "single_bubble": {
+      "rule": "merge all segments into one structured bubble"
+    },
+    "hybrid": {
+      "rule": "1-2 short social bubbles + 1 dense technical bubble + 1 closing bubble",
+      "max_bubbles": 5
+    }
+  },
+  "segments": [
+    "social_open",
+    "core_confirm",
+    "detail",
+    "optional_options",
+    "next_action"
+  ],
+  "constraints": {
+    "token_limits": {
+      "social_open": [6, 20],
+      "core_confirm": [8, 28],
+      "detail": [25, 220],
+      "next_action": [8, 24]
+    },
+    "anti_monotony": [
+      "no_same_opener_as_previous_reply",
+      "no_duplicate_bigrams_in_adjacent_bubbles",
+      "lexical_variance_ratio>=0.62_excluding_stopwords"
+    ]
+  },
+  "emission": {
+    "tool": "message.send",
+    "call_per_bubble": true,
+    "first_bubble_reply_tag": "if has_reply_context=true prepend [[reply_to_current]] ",
+    "subsequent_reply_tag": "forbidden",
+    "channel": "whatsapp",
+    "target": "context.sender_id"
+  },
+  "opener_rotation": [
+    "Siap",
+    "Oke",
+    "Noted",
+    "Mantap",
+    "Valid"
+  ],
+  "failsafes": [
+    "if total_token_count>120 and no_code_block then force_mode=hybrid",
+    "cap_bubbles_at_5",
+    "if context_loss_risk=true then merge_adjacent_segments"
+  ],
+  "output": {
+    "mode": "multi_bubble|single_bubble|hybrid",
+    "bubbles": ["string"],
+    "tool_calls": [
+      {
+        "action": "send",
+        "channel": "whatsapp",
+        "target": "string",
+        "message": "string"
+      }
+    ]
+  }
+}
