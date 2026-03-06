@@ -1,17 +1,20 @@
 OpenClaw Multi-Bubble Patch Quickstart (Portable)
 
-1) Dry-run scan
+1) Status check (no changes)
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --status
+
+2) Dry-run
 python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --dry-run
 
-2) Apply patch
+3) Apply patch
 python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py
 
-3) Restart gateway
-openclaw gateway stop
-openclaw-gateway &
+4) Restart gateway
+systemctl --user restart openclaw-gateway
+systemctl --user status openclaw-gateway --no-pager -l
 
-4) Test
-Send `/reset` from WhatsApp and verify greeting is multi-bubble.
+5) Test
+Send `/reset` from WhatsApp, then test a 3-4 paragraph group reply.
 
 When to rerun:
 - after `openclaw` update

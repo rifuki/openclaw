@@ -1,21 +1,23 @@
 # OpenClaw WhatsApp Multi-Bubble Patch (Portable)
 
-Created: 2026-03-06  
+Created: 2026-03-06
 Maintainer: dolorisu
 
-This patch guarantees WhatsApp multi-bubble delivery by splitting text that contains `\n\n` at the compiled runtime layer.
+This patch guarantees WhatsApp multi-bubble delivery by splitting text that contains `\n\n` at compiled runtime for both delivery paths:
+- `dist/deliver-*.js` (tool/message delivery)
+- `dist/channel-web-*.js` + `dist/web-*.js` (auto-reply path, including group)
 
-## Current Status
-
-- Active flow: compiled runtime patch (`dist/deliver-*.js`)
-- Canonical guide: `ACTIVE.md`
-- Legacy artifacts: `legacy/README_LEGACY.md`
-
-## Main script
+## Canonical script
 
 `~/.openclaw/patches/apply-multibubble-dist-patch.py`
 
 ## Usage
+
+Check status (no changes):
+
+```bash
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --status
+```
 
 Dry run:
 
@@ -29,17 +31,16 @@ Apply patch:
 python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py
 ```
 
-Restart gateway:
+Restart gateway (systemd user service):
 
 ```bash
-openclaw gateway stop
-openclaw-gateway &
+systemctl --user restart openclaw-gateway
+systemctl --user status openclaw-gateway --no-pager -l
 ```
 
 ## Reapply rules
 
 Run patch again whenever:
-
 - OpenClaw is updated
 - OpenClaw is reinstalled
 - Node/toolchain version changes
@@ -47,6 +48,7 @@ Run patch again whenever:
 
 ## Verification
 
-1. Send `/reset` on WhatsApp
-2. Greeting must be multi-bubble from first reply
-3. If needed, verify multiple message IDs in session logs
+1. Run `--status` and confirm `deliver` + `web` entries are patched.
+2. Restart gateway service.
+3. Send `/reset` then test group reply with 3-4 paragraphs.
+4. Confirm WhatsApp bubbles are separate.
