@@ -1,25 +1,14 @@
-# Active Patch Files (Use These)
+# ACTIVE.md (What this file is for)
 
-## Canonical script
-- `apply-multibubble-dist-patch.py`
-  Portable runtime patcher for compiled dist files:
-  - `deliver-*.js`
-  - `channel-web-*.js`
-  - `web-*.js`
+This is the pointer file so we do not accidentally use legacy patch flow.
 
-## Runbook
-1. `python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --status`
-2. `python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --dry-run`
-3. `python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py`
-4. `systemctl --user restart openclaw-gateway`
-5. `systemctl --user status openclaw-gateway --no-pager -l`
-6. Test `/reset` on WhatsApp and verify multi-bubble in group.
+Use this script only:
+`~/.openclaw/patches/apply-multibubble-dist-patch.py`
 
-## Supporting docs
-- `README.md`
-- `QUICKSTART.txt`
-- `DEBUG_ANALYSIS.md`
+Standard run order:
+1) `--status`
+2) `--strict`
+3) restart `openclaw-gateway`
+4) test `/reset` + group multi-bubble
 
-## Important
-Do NOT use `src/channel.ts` patch flow anymore.
-Current runtime behavior requires patching compiled `dist` files.
+If docs conflict, trust `README.md` + script output.

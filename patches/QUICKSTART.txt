@@ -1,23 +1,16 @@
-OpenClaw Multi-Bubble Patch Quickstart (Portable)
+OpenClaw multi-bubble quickstart
 
-1) Status check (no changes)
+1) Audit
 python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --status
 
-2) Dry-run
-python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --dry-run
+2) Safe apply (with rollback on error)
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --strict
 
-3) Apply patch
-python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py
-
-4) Restart gateway
+3) Restart gateway
 systemctl --user restart openclaw-gateway
 systemctl --user status openclaw-gateway --no-pager -l
 
-5) Test
-Send `/reset` from WhatsApp, then test a 3-4 paragraph group reply.
-
-When to rerun:
-- after `openclaw` update
-- after reinstall
-- after node version/toolchain change
-- on new server/device setup
+4) Verify in WhatsApp
+- send /reset
+- trigger 3-4 paragraph group reply
+- confirm separate bubbles

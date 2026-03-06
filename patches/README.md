@@ -1,54 +1,33 @@
-# OpenClaw WhatsApp Multi-Bubble Patch (Portable)
+# OpenClaw WhatsApp Multi-Bubble Patch
 
-Created: 2026-03-06
-Maintainer: dolorisu
+This patch keeps WhatsApp replies split into separate bubbles when text contains blank-line separators (`\n\n`).
 
-This patch guarantees WhatsApp multi-bubble delivery by splitting text that contains `\n\n` at compiled runtime for both delivery paths:
-- `dist/deliver-*.js` (tool/message delivery)
-- `dist/channel-web-*.js` + `dist/web-*.js` (auto-reply path, including group)
+It patches both runtime paths:
+- `dist/deliver-*.js` (message tool / direct delivery)
+- `dist/channel-web-*.js` + `dist/web-*.js` (auto-reply, including group mentions)
 
-## Canonical script
-
+Canonical script:
 `~/.openclaw/patches/apply-multibubble-dist-patch.py`
 
-## Usage
-
-Check status (no changes):
-
+## Fast path
 ```bash
 python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --status
-```
-
-Dry run:
-
-```bash
-python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --dry-run
-```
-
-Apply patch:
-
-```bash
-python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py
-```
-
-Restart gateway (systemd user service):
-
-```bash
+python3 ~/.openclaw/patches/apply-multibubble-dist-patch.py --strict
 systemctl --user restart openclaw-gateway
-systemctl --user status openclaw-gateway --no-pager -l
 ```
 
-## Reapply rules
+## Modes
+- `--status`: read-only audit (patched/unpatched/unknown)
+- `--dry-run`: shows what would be changed
+- `--strict`: syntax-check each changed JS file with `node --check`; rollback everything on first failure
 
-Run patch again whenever:
-- OpenClaw is updated
-- OpenClaw is reinstalled
-- Node/toolchain version changes
-- New machine setup
+## When to rerun
+- after `openclaw` update
+- after reinstall
+- after node/toolchain change
+- new server setup
 
-## Verification
-
-1. Run `--status` and confirm `deliver` + `web` entries are patched.
-2. Restart gateway service.
-3. Send `/reset` then test group reply with 3-4 paragraphs.
-4. Confirm WhatsApp bubbles are separate.
+## Verify behavior
+1. Send `/reset`
+2. Mention bot in group and ask for 3-4 paragraph reply
+3. Confirm WhatsApp displays separate bubbles
